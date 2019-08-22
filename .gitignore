@@ -25,6 +25,9 @@ ExportedObj/
 *.opendb
 
 # Removal of Other libraries
+Assets/SampleScenes
+Assets/Standard Assets
+Assets/SteamVR
 Assets/Resources/SampleScenes
 Assets/Resources/Standard Assets
 Assets/Resources/SteamVR
