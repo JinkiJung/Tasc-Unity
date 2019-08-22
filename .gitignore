@@ -4,7 +4,7 @@
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
-
+Assets/SteamVR_Input
 # Visual Studio cache directory
 .vs/
 
@@ -24,6 +24,21 @@ ExportedObj/
 *.pdb
 *.opendb
 
+# Removal of Other libraries
+Assets/Resources/SampleScenes
+Assets/Resources/Standard Assets
+Assets/Resources/SteamVR
+actions.json
+binding_holographic_hmd.json
+binding_rift.json
+binding_vive.json
+binding_vive_pro.json
+binding_vive_tracker_camera.json
+bindings_holographic_controller.json
+bindings_knuckles.json
+bindings_oculus_touch.json
+bindings_vive_controller.json
+
 # Unity3D generated meta files
 *.pidb.meta
 *.pdb.meta
@@ -34,3 +49,4 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+.DS_Store
