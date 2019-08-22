@@ -31,6 +31,9 @@ Assets/SteamVR
 Assets/Resources/SampleScenes
 Assets/Resources/Standard Assets
 Assets/Resources/SteamVR
+Assets/Resources/SteamVR.meta
+Assets/Resources/Standard Assets.meta
+Assets/Resources/SampleScenes.meta
 actions.json
 binding_holographic_hmd.json
 binding_rift.json
@@ -51,5 +54,4 @@ sysinfo.txt
 
 # Builds
 *.apk
-*.unitypackage
 .DS_Store
