@@ -41,6 +41,11 @@ When [Jinki Jung](https://jinkijung.github.io/) and Hyeopwoo Lee conducted resea
 ## Maintainer
 - [Jinki Jung](https://jinkijung.github.io/)
 
-## License
- - MIT license
+## License: MIT license
+ - You may use this product for personal and/or commercial use.
+ - You may make modifications to the source code
+ - You may distribute the source and/or compiled code
+ - The work is provided "as is". You may not hold me the author liable
+ - You must include copyright information in all copies and uses of this work
+ - You must include the license notice in all copies or uses of this work
  
