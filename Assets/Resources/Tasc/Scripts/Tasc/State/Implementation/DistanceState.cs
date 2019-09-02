@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Tasc
 {
+    [System.Serializable]
     public class DistanceState : InterState
     {
         // two MoveState should not be generated from the same terminus

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Tasc
 {
+    [System.Serializable]
     public class VariableDistanceState : InterState
     {
         public VariableState stateVar1;

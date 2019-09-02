@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Tasc
 {
+    [System.Serializable]
     public class FloatVariableState : VariableState
     {
         public Parameter<float> value;

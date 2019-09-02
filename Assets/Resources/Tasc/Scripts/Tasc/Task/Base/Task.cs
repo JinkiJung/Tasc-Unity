@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Tasc
 {
+    [System.Serializable]
     public class Task: PrimitiveTask
     {
         public string name;
@@ -13,7 +14,7 @@ namespace Tasc
         public Terminus actor;
         public Condition entrance;
         public Terminus target;
-        public Task action;
+        public PrimitiveTask action;
         public Condition exit;
         public Instruction instruction;
         public Dictionary<TaskEndState, Task> next;

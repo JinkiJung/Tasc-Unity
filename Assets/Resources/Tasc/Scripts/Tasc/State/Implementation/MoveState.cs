@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Tasc
 {
+    [System.Serializable]
     public class MoveState : VectorVariableState
     {
         public MoveState(Terminus _sub, string _variableName="moveState") : base(_sub, _variableName, Vector3.zero)

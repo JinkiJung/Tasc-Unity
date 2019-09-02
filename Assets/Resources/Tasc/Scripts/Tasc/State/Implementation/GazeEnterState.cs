@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Tasc
 {
+    [System.Serializable]
     public class GazeEnterState : InterTerminusState
     {
         public Parameter<float> value;

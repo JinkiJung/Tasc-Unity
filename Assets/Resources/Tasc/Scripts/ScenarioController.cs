@@ -149,6 +149,8 @@ public class ScenarioController : MonoBehaviour
         scenario.MakeProcedure();
 
         scenario.Activate();
+
+        //Debug.Log(JsonUtility.ToJson(scenario));
     }
 
     

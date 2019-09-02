@@ -5,8 +5,10 @@ using UnityEngine;
 
 namespace Tasc
 {
+    [System.Serializable]
 	public class Parameter<T>: IComparable<Parameter<T>>, IEquatable<Parameter<T>>
 	{
+        [SerializeField]
         private T value;
 
 		public Parameter(T t)

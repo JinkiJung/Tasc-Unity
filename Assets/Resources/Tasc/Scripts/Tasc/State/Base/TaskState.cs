@@ -4,9 +4,12 @@ using UnityEngine;
 
 namespace Tasc
 {
+    [System.Serializable]
     public class TaskState : State
     {
+        [SerializeField]
         public Task task;
+        [SerializeField]
         public TaskProgressState progressState;
 
         public TaskState(Task _task, TaskProgressState _progressState)

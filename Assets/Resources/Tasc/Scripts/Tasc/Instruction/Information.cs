@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Tasc
 {
+    [System.Serializable]
     public class Information
     {
         public enum Context { Default, Title, Description, Status, Narration, InteractiveStatus }

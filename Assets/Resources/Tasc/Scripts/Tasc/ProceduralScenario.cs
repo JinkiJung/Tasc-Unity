@@ -4,10 +4,12 @@ using UnityEngine;
 
 namespace Tasc
 {
+    [System.Serializable]
     public class Scenario
     {
         public string name;
         public string description;
+        [SerializeField]
         List<Task> scenario;
 
         public bool isActivated;

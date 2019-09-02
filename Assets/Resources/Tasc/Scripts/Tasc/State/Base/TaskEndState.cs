@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Tasc
 {
+    [System.Serializable]
     public sealed class TaskEndState: State
     {
         public static TaskEndState None = new TaskEndState(2000, "None", "Not evaluated.");

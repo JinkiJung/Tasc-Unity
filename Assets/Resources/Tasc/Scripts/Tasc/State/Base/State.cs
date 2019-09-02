@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Tasc
 {
+    [System.Serializable]
     public abstract class State: IComparable
     {
         public int id = -1;

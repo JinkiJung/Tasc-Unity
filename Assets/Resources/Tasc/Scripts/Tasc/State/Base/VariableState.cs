@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace Tasc
 {
+    [System.Serializable]
     public class VariableState : IntraState
     {
+        [SerializeField]
         public Parameter<string> variableName;
 		public VariableState(Terminus _sub, string _variableName)
 		{

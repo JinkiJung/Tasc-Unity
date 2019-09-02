@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Tasc
 {
+    [System.Serializable]
     public class BoolVariableState : VariableState
     {
         public Parameter<bool> value;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Tasc
 {
+    [System.Serializable]
     public class InputHoldState : InputState
     {
         public InputHoldState(Terminus _sub, int _key)

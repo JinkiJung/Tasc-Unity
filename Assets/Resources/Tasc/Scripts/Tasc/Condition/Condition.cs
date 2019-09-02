@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Tasc
 {
+    [System.Serializable]
     public class Condition
     {
         public static Condition DummyCondition = new Condition(true);
@@ -31,7 +32,9 @@ namespace Tasc
         }
 
         public RelationalOperator comparison;
+        [SerializeField]
         public State endConditionState = null;
+        [SerializeField]
         public TimeState holdingTimer;
         public bool isSatisfied;
         public int holdingCount;

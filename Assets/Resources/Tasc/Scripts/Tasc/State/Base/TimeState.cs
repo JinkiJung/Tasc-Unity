@@ -6,10 +6,11 @@ using System;
 
 namespace Tasc
 {
+    [System.Serializable]
     public class TimeState : State
     {
         // we could not implement TimeState for task and state as subclass because of equality comparison at Condition
-        
+        [SerializeField]
         public Parameter<TimeSpan> value;
         private Stopwatch stopwatch;
         //private Dictionary<string, Stopwatch> stopwatches;

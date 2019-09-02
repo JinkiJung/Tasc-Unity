@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Tasc
 {
+    [System.Serializable]
     public class Terminus :MonoBehaviour
     {
         public Information information;

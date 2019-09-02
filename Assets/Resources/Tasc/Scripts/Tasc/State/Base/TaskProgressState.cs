@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Tasc
 {
+    [System.Serializable]
     public sealed class TaskProgressState: State
     {
         public static TaskProgressState Idle = new TaskProgressState(1000, "Idle", "Task is not initiated.");
