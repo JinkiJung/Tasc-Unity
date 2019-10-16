@@ -1,3 +1,5 @@
+![alt text](https://github.com/JinkiJung/Tasc-Unity/blob/master/Assets/Resources/Tasc/Texture/Tasc-logo-medium.png?raw=true)
+
 # Tasc-Unity: Unity implementation of Tasc
 Tasc is a task script that describes and implements a procedure. Tasc aims to support easier implementation of a scenario and a procedural task such as tutorial, virtual reality based training, e-Learning, game, presentation, and simultation, through the unified structure of the task script. This repository provides an Unity package of Tasc.
 
