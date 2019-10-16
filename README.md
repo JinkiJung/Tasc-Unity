@@ -1,7 +1,5 @@
-![alt text](https://github.com/JinkiJung/Tasc-Unity/blob/master/Assets/Resources/Tasc/Texture/Tasc-logo-small.png?raw=true)
-
 <p align="center">
-  <img width="460" src="https://github.com/JinkiJung/Tasc-Unity/blob/master/Assets/Resources/Tasc/Texture/Tasc-logo-small.png?raw=true">
+  <img src="https://github.com/JinkiJung/Tasc-Unity/blob/master/Assets/Resources/Tasc/Texture/Tasc-logo-small.png?raw=true">
 </p>
 
 # Tasc-Unity: Unity implementation of Tasc
