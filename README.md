@@ -17,7 +17,7 @@ Tasc is a task script that describes and implements a procedure. Tasc aims to su
 
 ## A brief history
 
-When [Jinki Jung](https://jinkijung.github.io/) and Hyeopwoo Lee conducted researches on virtual training, they found out there are no generalized framework in procedure implementation even though it has huge impacts to various industry. The initial idea was to develop an authoring tool for converting the training scenario (mostly formed as a manuscript or dialogs) to an executable training program. Throughout their publications and researches they formerly invented PAUT (pairwise authoring tool) and ACTA (Actor-Condition-Terminus-Action). Jinki who is the inventor of Tasc, continues his path to unify those efforts and implement Tasc from scratch again to make it more generic and useful. 
+When [Jinki Jung](https://jinkijung.github.io/) and [Hyeopwoo Lee](https://github.com/orgs/VirtualityForSafety/people/opo6954) conducted researches on virtual training, they found out there are no generalized framework in procedure implementation even though it has huge impacts to various industry. The initial idea was to develop an authoring tool for converting the training scenario (mostly formed as a manuscript or dialogs) to an executable training program. Throughout their publications and researches they formerly invented PAUT (pairwise authoring tool) and ACTA (Actor-Condition-Terminus-Action). Jinki who is the inventor of Tasc, continues his path to unify those efforts and implement Tasc from scratch again to make it more generic and useful. 
 
 ## Development environment
 * Unity 2018 2.0f2
