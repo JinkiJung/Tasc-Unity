@@ -1,4 +1,4 @@
-<p align="center">
+<p align="right">
   <img src="https://github.com/JinkiJung/Tasc-Unity/blob/master/Assets/Resources/Tasc/Texture/Tasc-logo-small.png?raw=true">
 </p>
 
@@ -41,6 +41,11 @@ When [Jinki Jung](https://jinkijung.github.io/) and [Hyeopwoo Lee](https://githu
 
 ## Reference implementation
 - [CraneManipulation3D](https://github.com/VirtualityForSafety/CraneManipulation3D)
+- [StretchingExercise3D](https://github.com/VirtualityForSafety/StretchingExercise3D)
+- [MazeEscape3D](https://github.com/VirtualityForSafety/MazeEscape3D)
+
+## Related works
+- [Annotation vs. Virtual Tutor: Comparative Analysis on the Effectiveness of Visual Instructions in Immersive Virtual Reality](https://www.researchgate.net/publication/336592427_Annotation_vs_Virtual_Tutor_Comparative_Analysis_on_the_Effectiveness_of_Visual_Instructions_in_Immersive_Virtual_Reality), presented at [IEEE ISMAR 2019](https://www.ismar19.org/)
 
 ## Maintainer
 - [Jinki Jung](https://jinkijung.github.io/)
