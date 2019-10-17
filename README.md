@@ -1,4 +1,4 @@
-<p align="right">
+<p align="center">
   <img src="https://github.com/JinkiJung/Tasc-Unity/blob/master/Assets/Resources/Tasc/Texture/Tasc-logo-small.png?raw=true">
 </p>
 
