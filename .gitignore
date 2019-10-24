@@ -28,12 +28,14 @@ ExportedObj/
 Assets/SampleScenes
 Assets/Standard Assets
 Assets/SteamVR
+Assets/SteamVR_Resources
 Assets/Resources/SampleScenes
 Assets/Resources/Standard Assets
 Assets/Resources/SteamVR
 Assets/Resources/SteamVR.meta
 Assets/Resources/Standard Assets.meta
 Assets/Resources/SampleScenes.meta
+Assets/Resources/SteamVR_Resources
 actions.json
 binding_holographic_hmd.json
 binding_rift.json
@@ -55,3 +57,4 @@ sysinfo.txt
 # Builds
 *.apk
 .DS_Store
+Assets/SteamVR_Resources.meta
