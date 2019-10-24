@@ -6,7 +6,7 @@
 Tasc is a task script that describes and implements a procedure. Tasc aims to support easier implementation of a scenario and a procedural task such as tutorial, virtual reality based training, e-Learning, game, presentation, and simultation, through the unified structure of the task script. This repository provides an Unity package of Tasc.
 
 ## Download
-[Tasc unitypackage v0.1.0](https://github.com/JinkiJung/Tasc-Unity/raw/master/Tasc0.1.0.unitypackage)
+[Tasc unitypackage v0.1.1](https://github.com/JinkiJung/Tasc-Unity/raw/master/Tasc0.1.1.unitypackage)
 
 ## Feature
 - Easy, reusable (modular) implementation of a scenario
@@ -28,7 +28,7 @@ When [Jinki Jung](https://jinkijung.github.io/) and [Hyeopwoo Lee](https://githu
 
 ## Dependency
 - [Unity Windows Text-To-Speech](https://github.com/VirtualityForSafety/UnityWindowsTTS)
-- SteamVR Plugin 2.3.2 (sdk 1.4.18)
+- SteamVR Plugin 2.4.5 (sdk 1.7.15)
 - Unity Standard Assets 1.1.5
 
 ## How to use it
