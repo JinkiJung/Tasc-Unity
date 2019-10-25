@@ -115,8 +115,7 @@ namespace Tasc
             bool resultFromExit = false;
             if (state == TaskProgressState.Idle)
             {
-                entrance.CheckPassive();
-                if (entrance.IsSatisfied()){
+                if (entrance.CheckPassive()){
                     state = TaskProgressState.Started;
                     startingTime = new TimeState(TimeState.GetGlobalTimer());
                     cantSkipInterval = GlobalConstraint.TASK_CANT_SKIP_INTERVAL;
@@ -132,8 +131,7 @@ namespace Tasc
                     if (!instructions[i].isAudioInstructionEnded())
                         cantSkipInterval--;
                 }
-                exit.CheckPassive();
-                resultFromExit = exit.IsSatisfied();
+                resultFromExit = exit.CheckPassive();
                 if (resultFromExit && cantSkipInterval < 0)
                 {
                     TaskEndState evaluateResult = Evaluate();

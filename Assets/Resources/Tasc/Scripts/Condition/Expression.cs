@@ -8,7 +8,7 @@ namespace Tasc
     public abstract class Expression
     {
         protected abstract bool Check(State state1, Operator ope, State state2, TimeState timeState = null);
-        public abstract void CheckPassive();
+        public abstract bool CheckPassive();
         public abstract bool Check(State state, TimeState timeState = null);
         public abstract void Activate();
         public abstract void Deactivate();

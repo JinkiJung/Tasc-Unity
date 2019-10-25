@@ -101,11 +101,14 @@ namespace Tasc
                 Check(state);
         }
 
-        public override void CheckPassive()
+        public override bool CheckPassive()
         {
+            if (isSatisfied)
+                return true;
             if (IsActivated() && !IsSatisfied())
                 if (ShouldCheckPassively())
-                    Check(null);
+                    return Check(null);
+            return false;
         }
 
         protected override bool Check(State state1, Operator ope, State state2, TimeState timeState = null)

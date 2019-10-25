@@ -76,7 +76,7 @@ namespace Tasc
             throw new NotImplementedException();
         }
 
-        public override void CheckPassive()
+        public override bool CheckPassive()
         {
             // for the case where two conditions are both passive types...
             condition1.CheckPassive();
@@ -91,6 +91,7 @@ namespace Tasc
                 else
                     throw new Exception("No logical operator set.");
             }
+            return IsSatisfied();
         }
 
         public override bool Check(State state, TimeState timeState = null)
