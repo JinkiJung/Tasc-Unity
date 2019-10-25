@@ -98,7 +98,14 @@ namespace Tasc
         public void Send(State state)
         {
             if(IsActivated() && !IsSatisfied())
-                CheckActive(state);
+                Check(state);
+        }
+
+        public override void CheckPassive()
+        {
+            if (IsActivated() && !IsSatisfied())
+                if (ShouldCheckPassively())
+                    Check(null);
         }
 
         protected override bool Check(State state1, Operator ope, State state2, TimeState timeState = null)
@@ -156,35 +163,42 @@ namespace Tasc
             return isSatisfied;
         }
 
-        public override bool CheckActive(State state, TimeState timeState = null)
+        public override bool Check(State state, TimeState timeState = null)
         {
-            if (endConditionState.GetType() == typeof(TimeState))
-                return HandleTimeState(this);
-            else if (endConditionState.GetType() == typeof(TaskState))
-                return HandleTaskState(this);
-            else if (endConditionState.GetType() == typeof(VariableDistanceState) && state.GetType().IsSubclassOf(typeof(VariableState)))
-                return HandleVariableDistanceState(this, state, timeState);
-            else if (endConditionState.GetType() == typeof(DistanceState))
-                return HandleDistanceState(this, state, timeState);
-            else
-                return Check(state, comparison, endConditionState, timeState);
-        }
-
-        // passive check
-        public override bool CheckPassive()
-        {
-            if (!isActivated)
-                return false;
-            if (isSatisfied)
-                return true;
-
             if (endConditionState == null)
                 throw new MissingComponentException();
-            if (ShouldCheckTimeState())
-                return HandleTimeState(this);
-            else if (ShouldCheckTaskState())
-                return HandleTaskState(this);
-            return false;
+
+            if (endConditionState.GetType() == typeof(TimeState))
+                return Check(TimeState.GlobalTimer, comparison, endConditionState);
+            else if (endConditionState.GetType() == typeof(TaskState))
+            {
+                TaskState taskState = endConditionState as TaskState;
+                //Debug.Log("HandleTaskState : " + Check(new TaskState(taskState.task), cond.endConditionState, cond.comparison));
+                return Check(new TaskState(taskState.task), comparison, endConditionState);
+            }
+            else if (endConditionState.GetType() == typeof(VariableDistanceState) && state.GetType().IsSubclassOf(typeof(VariableState)))
+            {
+                VariableDistanceState var1 = endConditionState as VariableDistanceState;
+                if ((state as VariableState) != null)
+                {
+                    VariableState var2 = state as VariableState;
+                    return VariableState.IsSameVariable(var1.stateVar1, var2) ? Check(new VariableDistanceState(var1, var2), comparison, endConditionState, timeState) : false;
+                }
+                return false;
+            }
+            else if (endConditionState.GetType() == typeof(DistanceState))
+            {
+                DistanceState var1 = endConditionState as DistanceState;
+                MoveState var2 = state as MoveState;
+                if ((state as MoveState) != null)
+                {
+                    return var1.hasMoveStateFromSameTerminus(var2) ? Check(var1.GetUpdated(var2), comparison, endConditionState, timeState) : false;
+                }
+                else
+                    return false;
+            }
+            else
+                return Check(state, comparison, endConditionState, timeState);
         }
 
         public bool ShouldCheckPassively()
@@ -200,55 +214,6 @@ namespace Tasc
         public bool ShouldCheckTaskState()
         {
             return endConditionState.GetType() == typeof(TaskState);
-        }
-
-        private bool HandleDistanceState(Condition cond, State state, TimeState timeState)
-        {
-            DistanceState var1 = cond.endConditionState as DistanceState;
-            MoveState var2 = state as MoveState;
-            if ((state as MoveState) != null)
-            {
-                if (var1.hasMoveStateFromSameTerminus(var2))
-                    return Check(var1.GetUpdated(var2), cond.comparison, cond.endConditionState, timeState);
-            }
-            return false;
-        }
-
-        private bool HandleVariableDistanceState(Condition cond, State state, TimeState timeState)
-        {
-            VariableDistanceState var1 = cond.endConditionState as VariableDistanceState;
-            if ((state as VariableState) != null)
-            {
-                VariableState var2 = state as VariableState;
-                if (VariableState.IsSameVariable(var1.stateVar1, var2))
-                {
-                    return Check(new VariableDistanceState(var1, var2), cond.comparison, cond.endConditionState, timeState);
-                }
-                    
-            }
-            return false;
-        }
-
-        private bool HandleTimeState(Condition cond)
-        {
-            if (ShouldCheckTimeState())
-            {
-                return Check(TimeState.GlobalTimer, cond.comparison, cond.endConditionState);
-            }
-            else
-                return false;
-        }
-
-        private bool HandleTaskState(Condition cond)
-        {
-            if (ShouldCheckTaskState())
-            {
-                TaskState taskState = cond.endConditionState as TaskState;
-                //Debug.Log("HandleTaskState : " + Check(new TaskState(taskState.task), cond.endConditionState, cond.comparison));
-                return Check(new TaskState(taskState.task), cond.comparison, cond.endConditionState);
-            }
-            else
-                return false;
         }
 
         public override bool IsSatisfied()

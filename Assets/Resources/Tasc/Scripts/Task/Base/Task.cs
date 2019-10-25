@@ -115,7 +115,8 @@ namespace Tasc
             bool resultFromExit = false;
             if (state == TaskProgressState.Idle)
             {
-                if(entrance.CheckPassive()){
+                entrance.CheckPassive();
+                if (entrance.IsSatisfied()){
                     state = TaskProgressState.Started;
                     startingTime = new TimeState(TimeState.GetGlobalTimer());
                     cantSkipInterval = GlobalConstraint.TASK_CANT_SKIP_INTERVAL;

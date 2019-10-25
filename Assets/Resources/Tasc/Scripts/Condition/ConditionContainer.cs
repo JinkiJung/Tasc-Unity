@@ -68,7 +68,7 @@ namespace Tasc
         public void Send(State state)
         {
             if (IsActivated() && !IsSatisfied())
-                CheckActive(state);
+                Check(state);
         }
 
         protected override bool Check(State state1, Operator ope, State state2, TimeState timeState = null)
@@ -76,13 +76,11 @@ namespace Tasc
             throw new NotImplementedException();
         }
 
-        public override bool CheckPassive()
+        public override void CheckPassive()
         {
             // for the case where two conditions are both passive types...
-            if (condition1.ShouldCheckPassively())
-                condition1.CheckPassive();
-            if (condition2.ShouldCheckPassively())
-                condition2.CheckPassive();
+            condition1.CheckPassive();
+            condition2.CheckPassive();
             if(condition1.ShouldCheckPassively() && condition2.ShouldCheckPassively())
             {
                 isSatisfied = false;
@@ -93,16 +91,15 @@ namespace Tasc
                 else
                     throw new Exception("No logical operator set.");
             }
-            return isSatisfied;
         }
 
-        public override bool CheckActive(State state, TimeState timeState = null)
+        public override bool Check(State state, TimeState timeState = null)
         {
             isSatisfied = false;
             if (relationship == LogicalOperator.And)
-                isSatisfied = condition1.CheckActive(state, timeState) && condition2.CheckActive(state, timeState);
+                isSatisfied = condition1.Check(state, timeState) && condition2.Check(state, timeState);
             else if (relationship == LogicalOperator.Or)
-                isSatisfied = condition1.CheckActive(state, timeState) || condition2.CheckActive(state, timeState);
+                isSatisfied = condition1.Check(state, timeState) || condition2.Check(state, timeState);
             else
                 throw new Exception("No logical operator set.");
             return isSatisfied;
