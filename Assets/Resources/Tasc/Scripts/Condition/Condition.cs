@@ -173,11 +173,11 @@ namespace Tasc
 
             if (endConditionState.GetType() == typeof(TimeState))
                 return Check(TimeState.GlobalTimer, comparison, endConditionState);
-            else if (endConditionState.GetType() == typeof(TaskState))
+            else if (endConditionState.GetType() == typeof(TascState))
             {
-                TaskState taskState = endConditionState as TaskState;
+                TascState taskState = endConditionState as TascState;
                 //Debug.Log("HandleTaskState : " + Check(new TaskState(taskState.task), cond.endConditionState, cond.comparison));
-                return Check(new TaskState(taskState.task), comparison, endConditionState);
+                return Check(new TascState(taskState.task), comparison, endConditionState);
             }
             else if (endConditionState.GetType() == typeof(VariableDistanceState) && state.GetType().IsSubclassOf(typeof(VariableState)))
             {
@@ -216,7 +216,7 @@ namespace Tasc
 
         public bool ShouldCheckTaskState()
         {
-            return endConditionState.GetType() == typeof(TaskState);
+            return endConditionState.GetType() == typeof(TascState);
         }
 
         public override bool IsSatisfied()

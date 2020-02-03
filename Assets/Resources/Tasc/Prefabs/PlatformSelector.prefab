@@ -2826,9 +2826,6 @@ MonoBehaviour:
   noSteamVRFallbackMaxDistanceWithItem: 0.5
   renderModelPrefab: {fileID: 1000011547835092, guid: d5082f7d9f947374197e0a97786f4e40,
     type: 2}
-  renderModels: []
-  mainRenderModel: {fileID: 0}
-  hoverhighlightRenderModel: {fileID: 0}
   showDebugText: 0
   spewDebugText: 0
   showDebugInteractables: 0
@@ -2877,9 +2874,6 @@ MonoBehaviour:
   noSteamVRFallbackMaxDistanceWithItem: 0.5
   renderModelPrefab: {fileID: 1000012617731570, guid: 837f93beb9a614743ae3a2c0ada7c388,
     type: 2}
-  renderModels: []
-  mainRenderModel: {fileID: 0}
-  hoverhighlightRenderModel: {fileID: 0}
   showDebugText: 0
   spewDebugText: 0
   showDebugInteractables: 0
@@ -2998,7 +2992,6 @@ MonoBehaviour:
   hapticFlash:
     actionPath: /actions/default/out/Haptic
     needsReinit: 1
-  autoSetWithControllerRangeOfMotion: 1
   debugHints: 0
 --- !u!114 &114693479964069554
 MonoBehaviour:
@@ -3090,7 +3083,6 @@ MonoBehaviour:
   hapticFlash:
     actionPath: /actions/default/out/Haptic
     needsReinit: 1
-  autoSetWithControllerRangeOfMotion: 1
   debugHints: 0
 --- !u!114 &114757982740684620
 MonoBehaviour:
@@ -3149,9 +3141,6 @@ MonoBehaviour:
   noSteamVRFallbackMaxDistanceNoItem: 10
   noSteamVRFallbackMaxDistanceWithItem: 0.5
   renderModelPrefab: {fileID: 0}
-  renderModels: []
-  mainRenderModel: {fileID: 0}
-  hoverhighlightRenderModel: {fileID: 0}
   showDebugText: 0
   spewDebugText: 0
   showDebugInteractables: 0
@@ -3309,11 +3298,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   texture: {fileID: 8400000, guid: 005ed5a6df2f5ff468efd6497d37fefa, type: 2}
+  curved: 1
+  antialias: 1
+  highquality: 1
   scale: 3
   distance: 1.25
   alpha: 1
   uvOffset: {x: 0, y: 0, z: 1, w: 1}
   mouseScale: {x: 1, y: 1}
+  curvedRange: {x: 1, y: 2}
   inputMethod: 0
 --- !u!124 &124033817775235642
 Behaviour:

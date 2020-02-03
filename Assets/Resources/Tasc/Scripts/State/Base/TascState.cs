@@ -4,19 +4,19 @@ using UnityEngine;
 
 namespace Tasc
 {
-    public class TaskState : State
+    public class TascState : State
     {
-        public Task task;
-        public TaskProgressState progressState;
+        public Tasc task;
+        public TascProgressState progressState;
 
-        public TaskState(Task _task, TaskProgressState _progressState)
+        public TascState(Tasc _task, TascProgressState _progressState)
         {
             task = _task;
             progressState = _progressState;
         }
 
         // initialize with existing task instance and its progressState
-        public TaskState(Task _task)
+        public TascState(Tasc _task)
         {
             task = _task;
             progressState = _task.state;
@@ -24,14 +24,14 @@ namespace Tasc
 
         public override string ToString()
         {
-            return "TaskState: " + task.name + "\t" + progressState;
+            return "TascState: " + task.name + "\t" + progressState;
         }
 
         public override bool Equals(object obj)
         {
-            if((obj as TaskState) != null)
+            if((obj as TascState) != null)
             {
-                TaskState other = obj as TaskState;
+                TascState other = obj as TascState;
                 return task.name.Equals(other.task.name) && progressState.Equals(other.progressState);
             }
             else
@@ -40,9 +40,9 @@ namespace Tasc
 
         public override int CompareTo(object obj)
         {
-            if ((obj as TaskState) != null && task.name.Equals((obj as TaskState).task.name))
+            if ((obj as TascState) != null && task.name.Equals((obj as TascState).task.name))
             {
-                TaskState other = obj as TaskState;
+                TascState other = obj as TascState;
                 return progressState.CompareTo(other.progressState);
             }
             else

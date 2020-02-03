@@ -1,14 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace Tasc
 {
+    [Serializable]
     public class ProceduralScenario
     {
         public string name;
         public string description;
-        List<Task> scenario;
+        List<Terminus> terminuses;
+        List<Action> actions;
+        List<Condition> conditions;
+        List<Instruction> instructions;
+        List<Tasc> scenario;
 
         public bool isActivated;
 
@@ -16,11 +22,16 @@ namespace Tasc
         {
             name = _name;
             description = _description;
-            scenario = new List<Task>();
+            scenario = new List<Tasc>();
             isActivated = false;
         }
 
-        public void Add(Task t)
+        public void LoadFromJSON(TextAsset textAsset)
+        {
+            Debug.Log(textAsset.text);
+        }
+
+        public void Add(Tasc t)
         {
             scenario.Add(t);
         }
@@ -29,7 +40,7 @@ namespace Tasc
         {
             for (int i = 0; i < scenario.Count - 1; i++)
             {
-                scenario[i].SetNext(TaskEndState.Correct, scenario[i + 1]);
+                scenario[i].SetNext(TascEndState.Correct, scenario[i + 1]);
             }
         }
 

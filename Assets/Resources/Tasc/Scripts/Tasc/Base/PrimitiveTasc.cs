@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Tasc
 {
-    public class PrimitiveTask
+    public class PrimitiveTasc
     {
         public enum Type
         {
@@ -36,9 +36,9 @@ namespace Tasc
             Manipulate = 24
         }
         public Type type;
-        public TaskEndState taskResult;
-        private TaskProgressState internalState;
-        public TaskProgressState state
+        public TascEndState taskResult;
+        private TascProgressState internalState;
+        public TascProgressState state
         {
             get { return internalState; }
             set
