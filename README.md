@@ -3,7 +3,7 @@
 </p>
 
 # Tasc-Unity: Unity implementation of Tasc
-Tasc is a task script that describes and implements a procedure. Tasc aims to support easier implementation of a scenario and a procedural task such as tutorial, virtual reality based training, e-Learning, game, presentation, and simultation, through the unified structure of the task script. This repository provides an Unity package of Tasc.
+Tasc is procedure modeling that describes and implements a procedure. Tasc aims to support easier implementation of a scenario and a procedural task such as tutorial, virtual reality based training, e-Learning, game, presentation, and simultation, through the unified structure of the task script. This repository provides an Unity package of Tasc, that consumes the Tasc script.
 
 ## Download
 [Tasc unitypackage v0.1.1](https://github.com/JinkiJung/Tasc-Unity/raw/master/Tasc0.1.1.unitypackage)
