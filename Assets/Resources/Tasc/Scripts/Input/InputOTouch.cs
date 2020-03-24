@@ -7,7 +7,6 @@ namespace TascUnity
     public class InputOTouch : MonoBehaviour
     {
         private Quaternion prevControllerRotation;
-        private Vector3 prevControllerPosition;
         //public Vector3 veloDirection;
         private float velocityMagnitute;
 
@@ -34,9 +33,7 @@ namespace TascUnity
         private void Update()
         {
             float rotDiff = Quaternion.Angle(this.transform.localRotation, prevControllerRotation);
-            Vector3 posDiff = this.transform.position - prevControllerPosition;
             prevControllerRotation = this.transform.localRotation;
-            prevControllerPosition = this.transform.position;
             velocityMagnitute = rotDiff * rotDiff * 0.05f;
         }
     }

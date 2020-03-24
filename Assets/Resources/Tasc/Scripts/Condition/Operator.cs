@@ -28,6 +28,14 @@ namespace TascUnity
                 throw new Exception("Error on Operation: type does not matched.");
             return code.Equals((obj as Operator).code);
         }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 249312458;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(name);
+            hashCode = hashCode * -1521134295 + code.GetHashCode();
+            return hashCode;
+        }
     }
 
     public class RelationalOperator: Operator

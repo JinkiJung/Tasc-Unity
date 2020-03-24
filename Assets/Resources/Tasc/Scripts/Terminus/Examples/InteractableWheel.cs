@@ -94,7 +94,7 @@ namespace TascUnity
             }
         }
 
-        private new void Start()
+        private void Start()
         {
             Initialize();
         }
