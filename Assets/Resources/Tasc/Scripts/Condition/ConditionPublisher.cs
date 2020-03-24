@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR.InteractionSystem;
 
-namespace Tasc
+namespace TascUnity
 {
     public class ConditionPublisher
     {

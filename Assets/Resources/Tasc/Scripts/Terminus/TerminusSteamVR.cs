@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Valve.VR.InteractionSystem;
 
-namespace Tasc
+namespace TascUnity
 {
     [RequireComponent(typeof(Interactable))]
     public class TerminusSteamVR : Terminus

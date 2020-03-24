@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Diagnostics;
 using System;
 
-namespace Tasc
+namespace TascUnity
 {
     public class TimeState : State
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tasc
+namespace TascUnity
 {
     public class PrimitiveTask
     {
@@ -36,9 +36,9 @@ namespace Tasc
             Manipulate = 24
         }
         public Type type;
-        public TaskEndState taskResult;
-        private TaskProgressState internalState;
-        public TaskProgressState state
+        public TascEndState taskResult;
+        private TascProgressState internalState;
+        public TascProgressState state
         {
             get { return internalState; }
             set

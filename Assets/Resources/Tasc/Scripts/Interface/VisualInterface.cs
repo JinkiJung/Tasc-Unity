@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Tasc
+namespace TascUnity
 {
     public class VisualInterface : Interface
     {

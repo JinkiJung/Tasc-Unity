@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Tasc
+namespace TascUnity
 {
     public class GlobalTimerUpdater : MonoBehaviour
     {

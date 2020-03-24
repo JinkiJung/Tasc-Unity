@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Tasc
+namespace TascUnity
 {
 	public abstract class Interface : MonoBehaviour
     {

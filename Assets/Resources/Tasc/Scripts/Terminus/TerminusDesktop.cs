@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Tasc
+namespace TascUnity
 {
     // support for desktop version
     public class TerminusDesktop : Terminus

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR.InteractionSystem;
 
-namespace Tasc
+namespace TascUnity
 {
     [RequireComponent(typeof(Interactable))]
     public class InteractableWheel : TerminusSteamVR

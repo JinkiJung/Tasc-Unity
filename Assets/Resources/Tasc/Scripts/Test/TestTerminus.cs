@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tasc;
+using TascUnity;
+
 public class TestTerminus : Terminus {
     public bool isPushed = false;
     public float incrementValue = 0;

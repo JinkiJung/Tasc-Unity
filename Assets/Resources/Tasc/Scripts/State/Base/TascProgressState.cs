@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tasc
+namespace TascUnity
 {
-    public sealed class TaskProgressState: State
+    public sealed class TascProgressState: State
     {
-        public static TaskProgressState Idle = new TaskProgressState(1000, "Idle", "Task is not initiated.");
-        public static TaskProgressState Started = new TaskProgressState(1001, "Started", "Task is in progress.");
-        public static TaskProgressState Ended = new TaskProgressState(1002, "Ended", "Task is terminated.");
+        public static TascProgressState Idle = new TascProgressState(1000, "Idle", "Tasc is not initiated.");
+        public static TascProgressState Started = new TascProgressState(1001, "Started", "Tasc is in progress.");
+        public static TascProgressState Ended = new TascProgressState(1002, "Ended", "Tasc is terminated.");
         
-        public TaskProgressState(int _id, string _name, string _description)
+        public TascProgressState(int _id, string _name, string _description)
         {
             internalStateCode = _id;
             name = _name;
@@ -19,9 +19,9 @@ namespace Tasc
 
         public override bool Equals(object obj)
         {
-            if ((obj as TaskProgressState) != null)
+            if ((obj as TascProgressState) != null)
             {
-                TaskProgressState other = obj as TaskProgressState;
+                TascProgressState other = obj as TascProgressState;
                 return internalStateCode.Equals(other.internalStateCode);
             }
             else
@@ -30,9 +30,9 @@ namespace Tasc
 
         public override int CompareTo(object obj)
         {
-            if ((obj as TaskProgressState) != null)
+            if ((obj as TascProgressState) != null)
             {
-                return internalStateCode.CompareTo((obj as TaskProgressState).internalStateCode);
+                return internalStateCode.CompareTo((obj as TascProgressState).internalStateCode);
             }
             else
                 throw new System.Exception("It tried comparison with different format");

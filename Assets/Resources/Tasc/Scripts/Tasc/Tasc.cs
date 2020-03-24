@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tasc
+namespace TascUnity
 {
-    public class Task: PrimitiveTask
+    public class Tasc: PrimitiveTask
     {
         public string name;
         public string description;
@@ -15,40 +15,40 @@ namespace Tasc
         public Expression when;
         public Terminus who;
         public Terminus target;
-        public Task does;
+        public Action does;
         public List<Instruction> follow;
         public Expression before;
-        public Dictionary<TaskEndState, Task> next;
+        public Dictionary<TascEndState, Tasc> next;
         public TimeState startingTime;
         
         int cantSkipInterval;
         
-        public Task()
+        public Tasc()
         {
             if(state==null)
-                state = TaskProgressState.Idle;
+                state = TascProgressState.Idle;
             if(taskResult==null)
-                taskResult = TaskEndState.None;
+                taskResult = TascEndState.None;
             state.OnStateChange += StateChangeHandler;
             isActivated = false;
-            next = new Dictionary<TaskEndState, Task>();
+            next = new Dictionary<TascEndState, Tasc>();
             when = Condition.DummyCondition;
             follow = new List<Instruction>();
         }
 
-        public Task(bool _isActivated): this()
+        public Tasc(bool _isActivated): this()
         {
             isActivated = _isActivated;
         }
 
         public bool HasFinished()
         {
-            return !isActivated && state == TaskProgressState.Ended;
+            return !isActivated && state == TascProgressState.Ended;
         }
 
         private void StateChangeHandler(State newState){
-            Debug.Log(TimeState.GetGlobalTimer() + "\tTask: "+name+"\tTaskProgressState: " + newState.ToString());
-            ConditionPublisher.Instance.Send(new TaskState(this, newState as TaskProgressState));
+            Debug.Log(TimeState.GetGlobalTimer() + "\tTasc: "+name+"\tTascProgressState: " + newState.ToString());
+            ConditionPublisher.Instance.Send(new TascState(this, newState as TascProgressState));
         }
 
         public override string ToString()
@@ -56,17 +56,17 @@ namespace Tasc
             return name + ": " + description;
         }
 
-        public Task(string _name, string _description) : this()
+        public Tasc(string _name, string _description) : this()
         {
             name = _name;
             description = _description;
         }
 
-        public TaskEndState Evaluate(){
-            return TaskEndState.Correct;
+        public TascEndState Evaluate(){
+            return TascEndState.Correct;
         }
 
-        public void SetNext(TaskEndState taskEndState, Task task)
+        public void SetNext(TascEndState taskEndState, Tasc task)
         {
             if(next != null && task != null)
             {
@@ -74,10 +74,10 @@ namespace Tasc
             }
         }
 
-        public void MoveNext(TaskEndState taskEndState)
+        public void MoveNext(TascEndState taskEndState)
         {
             Deactivate();
-            if (taskEndState != TaskEndState.None && next.ContainsKey(taskEndState) && next[taskEndState]!= null)
+            if (taskEndState != TascEndState.None && next.ContainsKey(taskEndState) && next[taskEndState]!= null)
                 next[taskEndState].Activate();
         }
 
@@ -115,17 +115,17 @@ namespace Tasc
                 return false;
 
             bool resultFromExit = false;
-            if (state == TaskProgressState.Idle)
+            if (state == TascProgressState.Idle)
             {
                 if (when.CheckPassive()){
-                    state = TaskProgressState.Started;
+                    state = TascProgressState.Started;
                     startingTime = new TimeState(TimeState.GetGlobalTimer());
                     cantSkipInterval = GlobalConstraint.TASK_CANT_SKIP_INTERVAL;
                     when.Deactivate();
                     before.ActivateAndStartMonitoring();
                 }
             }
-            else if (state == TaskProgressState.Started)
+            else if (state == TascProgressState.Started)
             {
                 for (int i = 0; i < follow.Count; i++)
                 {
@@ -136,10 +136,10 @@ namespace Tasc
                 resultFromExit = before.CheckPassive();
                 if (resultFromExit && cantSkipInterval < 0)
                 {
-                    TaskEndState evaluateResult = Evaluate();
-                    if(evaluateResult == TaskEndState.Correct)
+                    TascEndState evaluateResult = Evaluate();
+                    if(evaluateResult == TascEndState.Correct)
                     {
-                        state = TaskProgressState.Ended;
+                        state = TascProgressState.Ended;
                         for (int i = 0; i < follow.Count; i++)
                         {
                             follow[i].WrapUp();

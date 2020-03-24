@@ -1004,7 +1004,7 @@ MonoBehaviour:
   - {fileID: 298470023}
   - {fileID: 2061877212}
   - {fileID: 2061877211}
-  actor: {fileID: 114134888200295190, guid: 7872d1200b04c3c439774372909cf319, type: 2}
+  actor: {fileID: 1328184220}
 --- !u!4 &518979432
 Transform:
   m_ObjectHideFlags: 0

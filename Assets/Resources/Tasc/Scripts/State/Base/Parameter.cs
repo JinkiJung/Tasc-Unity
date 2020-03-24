@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tasc
+namespace TascUnity
 {
 	public class Parameter<T>: IComparable<Parameter<T>>, IEquatable<Parameter<T>>
 	{

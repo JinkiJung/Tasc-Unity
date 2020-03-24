@@ -5,15 +5,15 @@ using UnityEngine.UI;
 using UnityEngine.XR;
 using Valve.VR;
 
-namespace Tasc
+namespace TascUnity
 {
     public class PlatformSelector : MonoBehaviour
     {
-        public static Tasc.Platform chosenPlatform;
+        public static Platform chosenPlatform;
 
         public static PlatformSelector platformSelector = null;
-        public Tasc.Platform currentPlatform = Platform.Desktop;
-        public static Tasc.Platform GetCurrentPlatform() { return chosenPlatform; }
+        public Platform currentPlatform = Platform.Desktop;
+        public static Platform GetCurrentPlatform() { return chosenPlatform; }
         private ScenarioController scenarioController;
 
         private void OnValidate()

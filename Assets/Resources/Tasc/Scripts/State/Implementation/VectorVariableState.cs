@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tasc
+namespace TascUnity
 {
     public class VectorVariableState : VariableState
     {

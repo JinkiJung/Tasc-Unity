@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tasc
+namespace TascUnity
 {
     public class Condition : Expression
     {
@@ -173,11 +173,11 @@ namespace Tasc
 
             if (endConditionState.GetType() == typeof(TimeState))
                 return Check(TimeState.GlobalTimer, comparison, endConditionState);
-            else if (endConditionState.GetType() == typeof(TaskState))
+            else if (endConditionState.GetType() == typeof(TascState))
             {
-                TaskState taskState = endConditionState as TaskState;
-                //Debug.Log("HandleTaskState : " + Check(new TaskState(taskState.task), cond.endConditionState, cond.comparison));
-                return Check(new TaskState(taskState.task), comparison, endConditionState);
+                TascState taskState = endConditionState as TascState;
+                //Debug.Log("HandleTascState : " + Check(new TascState(taskState.task), cond.endConditionState, cond.comparison));
+                return Check(new TascState(taskState.task), comparison, endConditionState);
             }
             else if (endConditionState.GetType() == typeof(VariableDistanceState) && state.GetType().IsSubclassOf(typeof(VariableState)))
             {
@@ -206,7 +206,7 @@ namespace Tasc
 
         public bool ShouldCheckPassively()
         {
-            return ShouldCheckTaskState() || ShouldCheckTimeState();
+            return ShouldCheckTascState() || ShouldCheckTimeState();
         }
 
         public bool ShouldCheckTimeState()
@@ -214,9 +214,9 @@ namespace Tasc
             return endConditionState.GetType() == typeof(TimeState);
         }
 
-        public bool ShouldCheckTaskState()
+        public bool ShouldCheckTascState()
         {
-            return endConditionState.GetType() == typeof(TaskState);
+            return endConditionState.GetType() == typeof(TascState);
         }
 
         public override bool IsSatisfied()

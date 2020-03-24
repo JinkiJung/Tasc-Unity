@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-namespace Tasc
+namespace TascUnity
 {
     public class InformationContainer
     {
@@ -45,16 +45,16 @@ namespace Tasc
         {
             if (contextContent == null)
                 Initialize();
-            if (contextContent.ContainsKey(context))
-                contextContent[context] = content;
+            if (contextContent.ContainsKey(context.ToLower()))
+                contextContent[context.ToLower()] = content;
             else
-                contextContent.Add(context, content);
+                contextContent.Add(context.ToLower(), content);
         }
 
         public virtual Information GetInfo(string context)
         {
             Information result = null;
-            return contextContent.TryGetValue(context, out result) ? result : null;
+            return contextContent.TryGetValue(context.ToLower(), out result) ? result : null;
         }
     }
 }

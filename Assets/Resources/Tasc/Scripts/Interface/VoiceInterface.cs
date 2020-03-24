@@ -5,7 +5,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.IO;
 
-namespace Tasc
+namespace TascUnity
 {
     public class VoiceInterface : Interface
     {
