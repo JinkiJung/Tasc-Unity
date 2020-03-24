@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1802837, g: 0.22571404, b: 0.30692273, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -547,15 +547,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   texture: {fileID: 8400000, guid: 005ed5a6df2f5ff468efd6497d37fefa, type: 2}
-  curved: 1
-  antialias: 1
-  highquality: 1
   scale: 3
   distance: 1.25
   alpha: 1
   uvOffset: {x: 0, y: 0, z: 1, w: 1}
   mouseScale: {x: 1, y: 1}
-  curvedRange: {x: 1, y: 2}
   inputMethod: 0
 --- !u!1 &298470021
 GameObject:
@@ -600,8 +596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 033cc9dbe4f65d04992a0e012060acd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: Narration
-  context: []
+  purpose: narration
+  isActive: 0
   voiceIdx: 0
 --- !u!1 &326478013
 GameObject:
@@ -896,6 +892,9 @@ MonoBehaviour:
   noSteamVRFallbackMaxDistanceWithItem: 0.5
   renderModelPrefab: {fileID: 1000011547835092, guid: d5082f7d9f947374197e0a97786f4e40,
     type: 2}
+  renderModels: []
+  mainRenderModel: {fileID: 0}
+  hoverhighlightRenderModel: {fileID: 0}
   showDebugText: 0
   spewDebugText: 0
   showDebugInteractables: 0
@@ -1005,7 +1004,7 @@ MonoBehaviour:
   - {fileID: 298470023}
   - {fileID: 2061877212}
   - {fileID: 2061877211}
-  actor: {fileID: 1328184220}
+  actor: {fileID: 114134888200295190, guid: 7872d1200b04c3c439774372909cf319, type: 2}
 --- !u!4 &518979432
 Transform:
   m_ObjectHideFlags: 0
@@ -1462,6 +1461,9 @@ MonoBehaviour:
   noSteamVRFallbackMaxDistanceNoItem: 10
   noSteamVRFallbackMaxDistanceWithItem: 0.5
   renderModelPrefab: {fileID: 0}
+  renderModels: []
+  mainRenderModel: {fileID: 0}
+  hoverhighlightRenderModel: {fileID: 0}
   showDebugText: 0
   spewDebugText: 0
   showDebugInteractables: 0
@@ -1804,8 +1806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2425968443e6d4c46ab89335264193ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: not decided
-  context: []
+  isControlled: 0
   isPushed: 0
   incrementValue: 0
   incrementVector: {x: 0, y: 0, z: 0}
@@ -2135,8 +2136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a86ea52710a9b7419ef091cb43f7234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: Title
-  context: []
+  purpose: 
+  isActive: 0
 --- !u!102 &1076090932
 TextMesh:
   serializedVersion: 3
@@ -2565,6 +2566,9 @@ MonoBehaviour:
   noSteamVRFallbackMaxDistanceWithItem: 0.5
   renderModelPrefab: {fileID: 1000012617731570, guid: 837f93beb9a614743ae3a2c0ada7c388,
     type: 2}
+  renderModels: []
+  mainRenderModel: {fileID: 0}
+  hoverhighlightRenderModel: {fileID: 0}
   showDebugText: 0
   spewDebugText: 0
   showDebugInteractables: 0
@@ -2613,8 +2617,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a86ea52710a9b7419ef091cb43f7234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: Title
-  context: []
+  purpose: 
+  isActive: 0
 --- !u!102 &1189509939
 TextMesh:
   serializedVersion: 3
@@ -2896,8 +2900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa5bdda3764a8f459fd96fc12da2863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: not decided
-  context: []
+  isControlled: 0
 --- !u!1 &1348047702
 GameObject:
   m_ObjectHideFlags: 0
@@ -3224,8 +3227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2992dff70beb44b4890c7f87f38612b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: not decided
-  context: []
+  isControlled: 0
   isWalkable: 1
 --- !u!114 &1433552977
 MonoBehaviour:
@@ -3305,8 +3307,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a86ea52710a9b7419ef091cb43f7234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: Description
-  context: []
+  purpose: 
+  isActive: 0
 --- !u!102 &1460503641
 TextMesh:
   serializedVersion: 3
@@ -3459,6 +3461,7 @@ MonoBehaviour:
   hapticFlash:
     actionPath: /actions/default/out/Haptic
     needsReinit: 1
+  autoSetWithControllerRangeOfMotion: 1
   debugHints: 0
 --- !u!1 &1560027200
 GameObject:
@@ -3505,8 +3508,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a86ea52710a9b7419ef091cb43f7234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: Description
-  context: []
+  purpose: 
+  isActive: 0
 --- !u!102 &1560027203
 TextMesh:
   serializedVersion: 3
@@ -4022,6 +4025,7 @@ MonoBehaviour:
   hapticFlash:
     actionPath: /actions/default/out/Haptic
     needsReinit: 1
+  autoSetWithControllerRangeOfMotion: 1
   debugHints: 0
 --- !u!1 &1782172277
 GameObject:
@@ -4305,8 +4309,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a86ea52710a9b7419ef091cb43f7234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: Description
-  context: []
+  purpose: description
+  isActive: 0
 --- !u!114 &2061877212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4318,5 +4322,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a86ea52710a9b7419ef091cb43f7234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: Title
-  context: []
+  purpose: title
+  isActive: 0

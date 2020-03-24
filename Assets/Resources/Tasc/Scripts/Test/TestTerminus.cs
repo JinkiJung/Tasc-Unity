@@ -23,7 +23,7 @@ public class TestTerminus : Terminus {
         return base.ToString() + " : Value (" + (isPushed) + ")";
     }
 
-    public override void Update()
+    protected override void Update()
     {
         base.Update();
         if (UnityEngine.Input.GetKeyUp(KeyCode.Z))

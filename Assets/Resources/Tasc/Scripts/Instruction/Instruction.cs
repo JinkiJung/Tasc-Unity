@@ -8,44 +8,45 @@ namespace Tasc
     public class Instruction
     {
         public enum TaskContext { None, Training, Tutorial, Assessment };
-        public Information information;
+        public InformationContainer library;
+        public TaskContext context;
         public string name;
-        protected List<TransferElement> interfaces;
+        protected List<Interface> interfaces;
         int narrationInterval;
         private bool isNarrationStarted = false;
         private bool isNarrationEnded = false;
 
-        public Instruction(List<TransferElement> givenInterfaces)
+        public Instruction(List<Interface> givenInterfaces)
         {
             name = "";
             interfaces = givenInterfaces;
-            information = new Information();
+            library = new InformationContainer();
         }
 
-        public Instruction(string givenTitle, List<TransferElement> givenInterfaces)
+        public Instruction(string givenTitle, List<Interface> givenInterfaces)
         {
             name = givenTitle;
             interfaces = givenInterfaces;
-            information = new Information();
+            library = new InformationContainer();
         }
 
         public Instruction(Instruction another)
         {
             name = another.name;
-            information = new Information(another.information);
-            interfaces = new List<TransferElement>();
+            library = new InformationContainer(another.library);
+            interfaces = new List<Interface>();
             for(int i=0; i< another.interfaces.Count; i++)
                 interfaces.Add(another.interfaces[i]); 
         }
 
-        public void SetContent(string context, string inputContent)
+        public void SetInfo(string context, string inputContent)
         {
-            information.SetContent(context, inputContent);
+            library.SetInfo(context, new Information(inputContent));
         }
 
-        public string GetContent(string context)
+        public Information GetInfo(string context)
         {
-            return information.GetContent(context);
+            return library.GetInfo(context);
         }
 
         public virtual void Proceed(bool isAudioEnabled = true)
@@ -54,15 +55,11 @@ namespace Tasc
             {
                 for(int i=0; i< interfaces.Count; i++)
                 {
-                    if(interfaces[i] is VoiceInterface)
+                    if (interfaces[i] != null)
                     {
-                        if (isAudioEnabled)
-                            interfaces[i].SetInformation(information.GetContent(interfaces[i].type));
-                    }
-                    else
-                    {
-                        if(interfaces[i]!=null)
-                            interfaces[i].SetInformation(information.GetContent(interfaces[i].type));
+                        Debug.Log(interfaces[i].purpose);
+                        Debug.Log(library.GetInfo(interfaces[i].purpose).content);
+                        interfaces[i].Send(library.GetInfo(interfaces[i].purpose).content);
                     }
                 }
                 

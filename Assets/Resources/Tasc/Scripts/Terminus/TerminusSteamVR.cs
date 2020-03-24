@@ -22,7 +22,7 @@ namespace Tasc
             isInControl = false;
         }
 
-        private void Update()
+        protected override void Update()
         {
             UpdateInstructions(interfaces);
         }
@@ -30,7 +30,7 @@ namespace Tasc
         //-------------------------------------------------
         // Called when a Hand starts hovering over this object
         //-------------------------------------------------
-        protected void OnHandHoverBegin(Hand hand)
+        protected virtual void OnHandHoverBegin(Hand hand)
         {
             //Debug.Log("Hovering hand: " + hand.name);
         }
@@ -39,7 +39,7 @@ namespace Tasc
         //-------------------------------------------------
         // Called when a Hand stops hovering over this object
         //-------------------------------------------------
-        protected void OnHandHoverEnd(Hand hand)
+        protected virtual void OnHandHoverEnd(Hand hand)
         {
 
         }
@@ -47,7 +47,7 @@ namespace Tasc
         //-------------------------------------------------
         // Called every Update() while a Hand is hovering over this object
         //-------------------------------------------------
-        protected void HandHoverUpdate(Hand hand)
+        protected virtual void HandHoverUpdate(Hand hand)
         {
             //Debug.Log("Hovering hand: " + hand.name);
             Proceed(hand);
@@ -94,7 +94,7 @@ namespace Tasc
         //-------------------------------------------------
         // Called when this GameObject becomes attached to the hand
         //-------------------------------------------------
-        private void OnAttachedToHand(Hand hand)
+        protected virtual void OnAttachedToHand(Hand hand)
         {
             //textMesh.text = "Attached to hand: " + hand.name;
         }
@@ -103,7 +103,7 @@ namespace Tasc
         //-------------------------------------------------
         // Called when this GameObject is detached from the hand
         //-------------------------------------------------
-        private void OnDetachedFromHand(Hand hand)
+        protected virtual void OnDetachedFromHand(Hand hand)
         {
         }
 
@@ -111,7 +111,7 @@ namespace Tasc
         //-------------------------------------------------
         // Called every Update() while this GameObject is attached to the hand
         //-------------------------------------------------
-        private void HandAttachedUpdate(Hand hand)
+        protected virtual void HandAttachedUpdate(Hand hand)
         {
             //textMesh.text = "Attached to hand: " + hand.name + "\nAttached time: " + ( Time.time - attachTime ).ToString( "F2" );
         }
@@ -120,7 +120,7 @@ namespace Tasc
         //-------------------------------------------------
         // Called when this attached GameObject becomes the primary attached object
         //-------------------------------------------------
-        private void OnHandFocusAcquired(Hand hand)
+        protected virtual void OnHandFocusAcquired(Hand hand)
         {
         }
 
@@ -128,7 +128,7 @@ namespace Tasc
         //-------------------------------------------------
         // Called when another attached GameObject becomes the primary attached object
         //-------------------------------------------------
-        private void OnHandFocusLost(Hand hand)
+        protected virtual void OnHandFocusLost(Hand hand)
         {
         }
     }

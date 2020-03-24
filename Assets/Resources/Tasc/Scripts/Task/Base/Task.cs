@@ -10,12 +10,14 @@ namespace Tasc
         public string description;
         public int priority;
         public bool isActivated;
-        public Terminus actor;
-        public Expression entrance;
+
+        public string given;
+        public Expression when;
+        public Terminus who;
         public Terminus target;
-        public Task action;
-        public Expression exit;
-        public List<Instruction> instructions;
+        public Task does;
+        public List<Instruction> follow;
+        public Expression before;
         public Dictionary<TaskEndState, Task> next;
         public TimeState startingTime;
         
@@ -30,8 +32,8 @@ namespace Tasc
             state.OnStateChange += StateChangeHandler;
             isActivated = false;
             next = new Dictionary<TaskEndState, Task>();
-            entrance = Condition.DummyCondition;
-            instructions = new List<Instruction>();
+            when = Condition.DummyCondition;
+            follow = new List<Instruction>();
         }
 
         public Task(bool _isActivated): this()
@@ -81,7 +83,7 @@ namespace Tasc
 
         public void AddInstruction(Instruction instruction)
         {
-            instructions.Add(instruction);
+            follow.Add(instruction);
         }
 
         public void Activate()
@@ -90,7 +92,7 @@ namespace Tasc
             {
                 isActivated = true;
                 OnStateChange += StateChangeHandler;
-                entrance.ActivateAndStartMonitoring();
+                when.ActivateAndStartMonitoring();
             }
         }
 
@@ -100,14 +102,14 @@ namespace Tasc
             {
                 isActivated = false;
                 OnStateChange -= StateChangeHandler;
-                entrance.Deactivate();
-                exit.Deactivate();
+                when.Deactivate();
+                before.Deactivate();
             }
         }
 
         public bool Proceed()
         {
-            if (entrance == null || exit == null)
+            if (when == null || before == null)
                 throw new MissingComponentException();
             if (!isActivated)
                 return false;
@@ -115,32 +117,32 @@ namespace Tasc
             bool resultFromExit = false;
             if (state == TaskProgressState.Idle)
             {
-                if (entrance.CheckPassive()){
+                if (when.CheckPassive()){
                     state = TaskProgressState.Started;
                     startingTime = new TimeState(TimeState.GetGlobalTimer());
                     cantSkipInterval = GlobalConstraint.TASK_CANT_SKIP_INTERVAL;
-                    entrance.Deactivate();
-                    exit.ActivateAndStartMonitoring();
+                    when.Deactivate();
+                    before.ActivateAndStartMonitoring();
                 }
             }
             else if (state == TaskProgressState.Started)
             {
-                for (int i = 0; i < instructions.Count; i++)
+                for (int i = 0; i < follow.Count; i++)
                 {
-                    instructions[i].Proceed();
-                    if (!instructions[i].isAudioInstructionEnded())
+                    follow[i].Proceed();
+                    if (!follow[i].isAudioInstructionEnded())
                         cantSkipInterval--;
                 }
-                resultFromExit = exit.CheckPassive();
+                resultFromExit = before.CheckPassive();
                 if (resultFromExit && cantSkipInterval < 0)
                 {
                     TaskEndState evaluateResult = Evaluate();
                     if(evaluateResult == TaskEndState.Correct)
                     {
                         state = TaskProgressState.Ended;
-                        for (int i = 0; i < instructions.Count; i++)
+                        for (int i = 0; i < follow.Count; i++)
                         {
-                            instructions[i].WrapUp();
+                            follow[i].WrapUp();
                         }
                         MoveNext(evaluateResult);
                     }

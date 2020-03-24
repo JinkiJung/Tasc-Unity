@@ -3,9 +3,14 @@ using System.Collections;
 
 namespace Tasc
 {
-	public class Interface : TransferElement
+	public abstract class Interface : MonoBehaviour
     {
-		public override void SetInformation(string msg) { }
+        public string purpose = ""; // context in use, e.g., None, Title, Description, Status, Narration, InteractiveStatus, Guidance
+        public bool isActive = false;
+        public virtual void Send(string information) { }
+        public virtual void Activate() { isActive = true; }
+        public virtual void Deactivate() { isActive = false; }
+        public bool HasSamePurpose(string other) { return purpose.ToLower().Equals(other.ToLower()); }
     }
 }
 

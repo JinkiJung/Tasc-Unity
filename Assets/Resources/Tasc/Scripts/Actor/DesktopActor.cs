@@ -6,7 +6,7 @@ namespace Tasc
 {
     public class DesktopActor : Actor
     {
-        public override void Update()
+        protected override void Update()
         {
             base.Update();
             HandleKeyInput();

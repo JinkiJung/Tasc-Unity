@@ -9,12 +9,12 @@ namespace Tasc
         ModelPoser model;
         bool isVisible;
 
-        public Annotation(List<TransferElement> givenInterfaces): base(givenInterfaces)
+        public Annotation(List<Interface> givenInterfaces): base(givenInterfaces)
         {
         
         }
 
-        public Annotation(string name, List<TransferElement> givenInterfaces) : base(name, givenInterfaces)
+        public Annotation(string name, List<Interface> givenInterfaces) : base(name, givenInterfaces)
         {
 
         }
@@ -39,7 +39,7 @@ namespace Tasc
                 model.hide();
             for (int i = 0; i < interfaces.Count; i++)
             {
-                interfaces[i].SetVisibility(isVisible);
+                interfaces[i].Activate();
             }
         }
 
@@ -50,26 +50,29 @@ namespace Tasc
             
             for(int i=0; i<interfaces.Count; i++)
             {
-                if (information.GetContent(interfaces[i].type).Contains("forward bend pose"))
+                if (library.GetInfo("title").content.Contains("forward bend pose"))
                     model.takePose(0);
-                else if (information.GetContent(interfaces[i].type).Contains("triangle pose"))
+                else if (library.GetInfo("title").content.Contains("triangle pose"))
                     model.takePose(1);
-                else if (information.GetContent(interfaces[i].type).Contains("side bend stretch"))
+                else if (library.GetInfo("title").content.Contains("side bend stretch"))
                     model.takePose(2);
-                else if (information.GetContent(interfaces[i].type).Contains("mountain pose"))
+                else if (library.GetInfo("title").content.Contains("mountain pose"))
                     model.takePose(3);
-                else if (information.GetContent(interfaces[i].type).Contains("neck relaxing pose"))
+                else if (library.GetInfo("title").content.Contains("neck relaxing pose"))
                     model.takePose(4);
                 else
                 {
                     model.hide();
                 }
-                if (interfaces[i].type == "LeftHandGuide")
-                    interfaces[i].SetPose(model.getLeftHandPos(), Quaternion.identity);
-                else if (interfaces[i].type == "RightHandGuide")
-                    interfaces[i].SetPose(model.getRightHandPos(), Quaternion.identity);
-                else if (interfaces[i].type == "HeadGuide")
-                    interfaces[i].SetPose(model.getHeadPos(), Quaternion.identity);
+                if(interfaces[i] is VisualInterface)
+                {
+                    if (interfaces[i].transform.name == "LeftHandGuide")
+                        (interfaces[i] as VisualInterface).SetPose(model.getLeftHandPos(), Quaternion.identity);
+                    else if (interfaces[i].transform.name == "RightHandGuide")
+                        (interfaces[i] as VisualInterface).SetPose(model.getRightHandPos(), Quaternion.identity);
+                    else if (interfaces[i].transform.name == "HeadGuide")
+                        (interfaces[i] as VisualInterface).SetPose(model.getHeadPos(), Quaternion.identity);
+                }
             }
         }
 

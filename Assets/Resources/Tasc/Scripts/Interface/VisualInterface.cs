@@ -7,8 +7,29 @@ namespace Tasc
 {
     public class VisualInterface : Interface
     {
-        public override void SetInformation(string msg)
+        Renderer currentRenderer;
+        
+        void Awake()
         {
+            currentRenderer = GetComponentInChildren<Renderer>();
+        }
+
+        public override void Activate()
+        {
+            base.Activate();
+            SetVisibility(isActive);
+        }
+
+        public override void Deactivate()
+        {
+            base.Deactivate();
+            SetVisibility(isActive);
+        }
+
+        public override void Send(string msg)
+        {
+            if (!isActive)
+                return;
             Set3DText(msg);
             Set2DText(msg);
         }
@@ -27,6 +48,17 @@ namespace Tasc
             {
                 this.GetComponent<Text>().text = givenText;
             }
+        }
+
+        public void SetVisibility(bool value)
+        {
+            if (currentRenderer != null)
+                currentRenderer.enabled = value;
+        }
+
+        public void SetPose(Vector3 position, Quaternion rotation)
+        {
+            transform.SetPositionAndRotation(position, rotation);
         }
     }
 }

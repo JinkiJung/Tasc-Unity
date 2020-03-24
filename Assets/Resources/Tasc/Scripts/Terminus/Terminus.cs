@@ -4,18 +4,19 @@ using UnityEngine;
 
 namespace Tasc
 {
-    public class Terminus : TransferElement
+    public class Terminus : MonoBehaviour
     {
+        
         protected Collider terminusChecker;
-
-        private Vector3 previousPosition;        
+        private Vector3 previousPosition;
+        public bool isControlled;
 
         public virtual void Send()
         {
 
         }
 
-        public virtual void Update()
+        protected virtual void Update()
         {
             ProceedWhenTransformChanged();
         }
@@ -47,16 +48,30 @@ namespace Tasc
         public virtual void Initialize()
         {
             name = transform.name;
+            isControlled = false;
         }
 
-        public virtual Transform Control(Transform terminus, Vector3 controlVector, Quaternion controlRotation, bool givenFromDesktop = false)
+        public virtual Transform Control(Transform terminus, Vector3 contactPoint, Quaternion controlRotation, bool givenFromDesktop = false)
         {
-            return null;
+            if (!isControlled)
+                return null;
+            else
+                return this.transform;
+        }
+
+        public virtual void Grab(Transform terminus, Vector3 contactPoint, Quaternion controlRotation, bool givenFromDesktop = false)
+        {
+            isControlled = true;
+        }
+
+        public virtual void Release(Transform terminus, Vector3 contactPoint, Quaternion controlRotation, bool givenFromDesktop = false)
+        {
+            isControlled = false;
         }
 
         public virtual void UpdateInterface(Interface relatedInterface)
         {
-            relatedInterface.SetInformation(ToString());
+            relatedInterface.Send(ToString());
         }
 
         public override string ToString()

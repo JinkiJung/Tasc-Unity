@@ -43,9 +43,7 @@ namespace Tasc
 #if UNITY_STANDALONE_WIN
             if (theVoice == null)
             {
-                theVoice = this;
-                Debug.Log("Tasc:Narrator - Initializing speech");
-                initSpeech();
+                Activate();
             }
 #endif
         }
@@ -55,16 +53,38 @@ namespace Tasc
 #if UNITY_STANDALONE_WIN
             if (theVoice == this)
             {
-                Debug.Log("Tasc:Narrator - Destroying speech");
-                destroySpeech();
-                theVoice = null;
+                Deactivate();
             }
 #endif
         }
 
-        public override void SetInformation(string msg)
+        public override void Send(string msg)
         {
+            if (!isActive)
+                return;
             VoiceInterface.Speak(msg, false);
+        }
+
+        public override void Activate()
+        {
+            base.Activate();
+            if(theVoice==null)
+            {
+                theVoice = this;
+                Debug.Log("Tasc:Narrator - Initializing speech");
+                initSpeech();
+            }
+        }
+
+        public override void Deactivate()
+        {
+            base.Deactivate();
+            if (theVoice != null)
+            {
+                Debug.Log("Tasc:Narrator - Destroying speech");
+                destroySpeech();
+                theVoice = null;
+            }
         }
 
         public static void Speak(string msg, bool interruptable = false)

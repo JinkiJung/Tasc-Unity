@@ -9,8 +9,10 @@ namespace Tasc
         public List<InteractableButton> interactableButtons;
         private int recentlyPushedIdx = -1;
         private string result = "";
-        public override void SetInformation(string msg)
+        public override void Send(string msg)
         {
+            if (!isActive)
+                return;
             for (int i=0; i< interactableButtons.Count; i++)
             {
                 if(interactableButtons[i].isPushed){

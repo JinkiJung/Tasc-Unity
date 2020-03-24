@@ -7,6 +7,7 @@ namespace Tasc
 {
     public class GuideBall:TerminusSteamVR
     {
+        public string type;
         public Transform target;
         bool isHovering = false;
         float hoveringRange = 0.3f;
@@ -16,14 +17,14 @@ namespace Tasc
             isHovering = false;
         }
 
-        protected void OnHandHoverEnd(Hand hand)
+        protected override void OnHandHoverEnd(Hand hand)
         {
             isHovering = false;
         }
 
-        protected void HandHoverUpdate(Hand hand)
+        protected override void HandHoverUpdate(Hand hand)
         {
-            if(type.Contains(hand.handType.ToString()))
+            if(type == hand.handType.ToString())
                 isHovering = true;
         }
 
@@ -33,12 +34,12 @@ namespace Tasc
             {
                 for (int i = 0; i < interfaces.Count; i++)
                 {
-                    interfaces[i].SetInformation(msg);
+                    interfaces[i].Send(msg);
                 }
             }
         }
 
-        private void Update()
+        protected override void Update()
         {
             if (isHovering)
             {
@@ -63,7 +64,7 @@ namespace Tasc
                         }                        
                     }
                     else
-                        SetInformation(type+"\n"+distance.ToString());
+                        SetInformation(type + "\n"+distance.ToString());
                 }
                 else
                 {

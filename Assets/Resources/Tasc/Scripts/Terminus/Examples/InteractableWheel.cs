@@ -94,7 +94,7 @@ namespace Tasc
             }
         }
 
-        private void Start()
+        private new void Start()
         {
             Initialize();
         }
