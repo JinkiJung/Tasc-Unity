@@ -5,15 +5,15 @@ using UnityEngine;
 
 namespace TascUnity
 {
-    class ConditionContainer : Expression
+    class SingleConditionContainer : Condition
     {
-        public Condition condition1;
-        public Condition condition2;
+        public SingleCondition condition1;
+        public SingleCondition condition2;
         public LogicalOperator relationship;
         public TimeState holdingTimer;
         protected bool isSatisfied;
 
-        public ConditionContainer(Condition c1, LogicalOperator ope, Condition c2, TimeState timeState = null)
+        public SingleConditionContainer(SingleCondition c1, LogicalOperator ope, SingleCondition c2, TimeState timeState = null)
         {
             condition1 = c1;
             relationship = ope;
@@ -57,12 +57,12 @@ namespace TascUnity
 
         public void StartMonitoring()
         {
-            ConditionPublisher.Instance.OnCheck += Send;
+            SingleConditionPublisher.Instance.OnCheck += Send;
         }
 
         public void StopMonitoring()
         {
-            ConditionPublisher.Instance.OnCheck -= Send;
+            SingleConditionPublisher.Instance.OnCheck -= Send;
         }
 
         public void Send(State state)

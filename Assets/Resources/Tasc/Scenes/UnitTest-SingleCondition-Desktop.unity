@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 298470022}
   - component: {fileID: 298470023}
   m_Layer: 0
-  m_Name: Narrator
+  m_Name: Narration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -598,6 +598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   purpose: narration
   isActive: 0
+  modality: 1
   voiceIdx: 0
 --- !u!1 &326478013
 GameObject:
@@ -1000,10 +1001,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1ac6c19b812d24db0ead52313bdd92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interfaces:
-  - {fileID: 298470023}
+  interfaceList:
   - {fileID: 2061877212}
   - {fileID: 2061877211}
+  - {fileID: 298470023}
   actor: {fileID: 1328184220}
 --- !u!4 &518979432
 Transform:
@@ -1720,7 +1721,6 @@ GameObject:
   - component: {fileID: 874530828}
   - component: {fileID: 874530827}
   - component: {fileID: 874530830}
-  - component: {fileID: 874530831}
   m_Layer: 0
   m_Name: TestTerminus
   m_TagString: Untagged
@@ -1810,17 +1810,6 @@ MonoBehaviour:
   isPushed: 0
   incrementValue: 0
   incrementVector: {x: 0, y: 0, z: 0}
---- !u!114 &874530831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 874530825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e16cf47325ac24af2b101f2a0873a203, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &925059568
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,6 +2127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   purpose: 
   isActive: 0
+  modality: 0
 --- !u!102 &1076090932
 TextMesh:
   serializedVersion: 3
@@ -2619,6 +2609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   purpose: 
   isActive: 0
+  modality: 0
 --- !u!102 &1189509939
 TextMesh:
   serializedVersion: 3
@@ -3309,6 +3300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   purpose: 
   isActive: 0
+  modality: 0
 --- !u!102 &1460503641
 TextMesh:
   serializedVersion: 3
@@ -3510,6 +3502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   purpose: 
   isActive: 0
+  modality: 0
 --- !u!102 &1560027203
 TextMesh:
   serializedVersion: 3
@@ -4283,6 +4276,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1932205021067208, guid: 2f3d287ddc20d7d42ad44b2189bd07c2, type: 2}
+      propertyPath: m_Name
+      value: TaskInstruction
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114219591009520750, guid: 2f3d287ddc20d7d42ad44b2189bd07c2, type: 2}
     - {fileID: 114696599095140018, guid: 2f3d287ddc20d7d42ad44b2189bd07c2, type: 2}
@@ -4311,6 +4308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   purpose: description
   isActive: 0
+  modality: 0
 --- !u!114 &2061877212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4324,3 +4322,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   purpose: title
   isActive: 0
+  modality: 0

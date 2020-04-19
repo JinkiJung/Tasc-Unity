@@ -11,13 +11,12 @@ namespace TascUnity
         public int priority;
         public bool isActivated;
 
-        public string given;
-        public Expression when;
+        public List<string> given;
+        public Condition when;
         public Terminus who;
-        public Terminus target;
         public Action does;
         public List<Instruction> follow;
-        public Expression before;
+        public Condition before;
         public Dictionary<TascEndState, Tasc> next;
         public TimeState startingTime;
         
@@ -32,7 +31,7 @@ namespace TascUnity
             state.OnStateChange += StateChangeHandler;
             isActivated = false;
             next = new Dictionary<TascEndState, Tasc>();
-            when = Condition.DummyCondition;
+            when = SingleCondition.DummySingleCondition;
             follow = new List<Instruction>();
         }
 
@@ -48,7 +47,7 @@ namespace TascUnity
 
         private void StateChangeHandler(State newState){
             Debug.Log(TimeState.GetGlobalTimer() + "\tTasc: "+name+"\tTascProgressState: " + newState.ToString());
-            ConditionPublisher.Instance.Send(new TascState(this, newState as TascProgressState));
+            SingleConditionPublisher.Instance.Send(new TascState(this, newState as TascProgressState));
         }
 
         public override string ToString()
@@ -130,8 +129,8 @@ namespace TascUnity
                 for (int i = 0; i < follow.Count; i++)
                 {
                     follow[i].Proceed();
-                    if (!follow[i].isAudioInstructionEnded())
-                        cantSkipInterval--;
+                    //if (!follow[i].IsDone())
+                    cantSkipInterval--;
                 }
                 resultFromExit = before.CheckPassive();
                 if (resultFromExit && cantSkipInterval < 0)
@@ -142,7 +141,7 @@ namespace TascUnity
                         state = TascProgressState.Ended;
                         for (int i = 0; i < follow.Count; i++)
                         {
-                            follow[i].WrapUp();
+                            follow[i].Conclude();
                         }
                         MoveNext(evaluateResult);
                     }

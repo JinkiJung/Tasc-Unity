@@ -9,7 +9,7 @@ namespace TascUnity
         public List<InteractableButton> interactableButtons;
         private int recentlyPushedIdx = -1;
         private string result = "";
-        public override void Send(string msg)
+        public override void Send(Information information)
         {
             if (!isActive)
                 return;

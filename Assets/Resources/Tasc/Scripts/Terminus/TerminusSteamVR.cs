@@ -24,7 +24,7 @@ namespace TascUnity
 
         protected override void Update()
         {
-            UpdateInstructions(interfaces);
+            UpdateInterfaces(interfaces);
         }
 
         //-------------------------------------------------
@@ -83,7 +83,7 @@ namespace TascUnity
             }
         }
 
-        public void UpdateInstructions(List<Interface> interfaces)
+        public void UpdateInterfaces(List<Interface> interfaces)
         {
             for (int i = 0; i < interfaces.Count; i++)
             {

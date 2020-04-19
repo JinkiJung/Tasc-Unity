@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TascUnity
 {
-    public abstract class Expression
+    public abstract class Condition
     {
         protected abstract bool Check(State state1, Operator ope, State state2, TimeState timeState = null);
         public abstract bool CheckPassive();

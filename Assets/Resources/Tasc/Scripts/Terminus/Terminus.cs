@@ -35,7 +35,7 @@ namespace TascUnity
             Vector3 currPos = gameObject.transform.position;
             if (previousPosition != currPos)
             {
-                ConditionPublisher.Instance.Send(new MoveState(this));
+                SingleConditionPublisher.Instance.Send(new MoveState(this));
                 previousPosition = currPos;
             }
         }
@@ -71,7 +71,7 @@ namespace TascUnity
 
         public virtual void UpdateInterface(Interface relatedInterface)
         {
-            relatedInterface.Send(ToString());
+            relatedInterface.Send(new Information(Information.Modality.Text, ToString()));
         }
 
         public override string ToString()

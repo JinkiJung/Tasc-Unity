@@ -41,18 +41,7 @@ namespace TascUnity
 
         void exportTerminusJSON()
         {
-            /*
-            Tasc.Asset[] assets = (Tasc.Asset[])GameObject.FindObjectsOfType(typeof(Tasc.Asset));
-            string terminuses = "{";
-            foreach (Tasc.Asset asset in assets)
-            {
-                terminuses += asset.ToJSON() + ",";
-            }
-            terminuses = terminuses.Remove(terminuses.Length - 1, 1) + "}";
-            //Debug.Log(terminuses);
-            System.IO.File.WriteAllText(System.IO.Path.Combine("Assets\\Data", "terminus.json"), terminuses);
-            isTerminusExported = true;
-            */
+            
         }
 
         public void Proceed()

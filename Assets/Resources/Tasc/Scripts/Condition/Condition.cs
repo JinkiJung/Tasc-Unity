@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace TascUnity
 {
-    public class Condition : Expression
+    public class SingleCondition : Condition
     {
-        public static Condition DummyCondition = new Condition(true);
-        public static Condition NeverSatisfied = new Condition(false);
-        public static Condition StartFromBeginning = DummyCondition;
+        public static SingleCondition DummySingleCondition = new SingleCondition(true);
+        public static SingleCondition NeverSatisfied = new SingleCondition(false);
+        public static SingleCondition StartFromBeginning = DummySingleCondition;
 
         ////////////////////////////////////////////////
         // should implement as multiple operator and operand
@@ -17,14 +17,14 @@ namespace TascUnity
         ///
 
         public RelationalOperator comparison;
-        public State endConditionState = null;
+        public State endSingleConditionState = null;
         public TimeState holdingTimer;
         protected bool isSatisfied;
         protected bool isActivated;
         public int holdingCount;
 
         // constructor for dummy condition
-        public Condition(bool _isSatisfied)
+        public SingleCondition(bool _isSatisfied)
         {
             isSatisfied = _isSatisfied;
             isActivated = true;
@@ -33,21 +33,21 @@ namespace TascUnity
             holdingCount = 0;
         }
 
-        public Condition(State _endCondition, RelationalOperator _comparison)
+        public SingleCondition(State _endSingleCondition, RelationalOperator _comparison)
         {
-            endConditionState = _endCondition;
+            endSingleConditionState = _endSingleCondition;
             comparison = _comparison;
             isSatisfied = false;
             holdingTimer = null;
             holdingCount = 0;
         }
 
-        public Condition(State _endCondition, RelationalOperator _comparison, TimeState _elapsedState): this(_endCondition, _comparison)
+        public SingleCondition(State _endSingleCondition, RelationalOperator _comparison, TimeState _elapsedState): this(_endSingleCondition, _comparison)
         {
             holdingTimer = _elapsedState;
         }
 
-        ~Condition()
+        ~SingleCondition()
         {
             Deactivate();
         }
@@ -82,17 +82,17 @@ namespace TascUnity
 
         public override string ToString()
         {
-            return endConditionState + " : " + comparison + (holdingTimer == null ? "" : " (during " + holdingTimer.ToString() + ")");
+            return endSingleConditionState + " : " + comparison + (holdingTimer == null ? "" : " (during " + holdingTimer.ToString() + ")");
         }
 
         public void StartMonitoring()
         {
-            ConditionPublisher.Instance.OnCheck += Send;
+            SingleConditionPublisher.Instance.OnCheck += Send;
         }
 
         public void StopMonitoring()
         {
-            ConditionPublisher.Instance.OnCheck -= Send;
+            SingleConditionPublisher.Instance.OnCheck -= Send;
         }
 
         public void Send(State state)
@@ -168,40 +168,40 @@ namespace TascUnity
 
         public override bool Check(State state, TimeState timeState = null)
         {
-            if (endConditionState == null)
+            if (endSingleConditionState == null)
                 throw new MissingComponentException();
 
-            if (endConditionState.GetType() == typeof(TimeState))
-                return Check(TimeState.GlobalTimer, comparison, endConditionState);
-            else if (endConditionState.GetType() == typeof(TascState))
+            if (endSingleConditionState.GetType() == typeof(TimeState))
+                return Check(TimeState.GlobalTimer, comparison, endSingleConditionState);
+            else if (endSingleConditionState.GetType() == typeof(TascState))
             {
-                TascState taskState = endConditionState as TascState;
-                //Debug.Log("HandleTascState : " + Check(new TascState(taskState.task), cond.endConditionState, cond.comparison));
-                return Check(new TascState(taskState.task), comparison, endConditionState);
+                TascState taskState = endSingleConditionState as TascState;
+                //Debug.Log("HandleTascState : " + Check(new TascState(taskState.task), cond.endSingleConditionState, cond.comparison));
+                return Check(new TascState(taskState.task), comparison, endSingleConditionState);
             }
-            else if (endConditionState.GetType() == typeof(VariableDistanceState) && state.GetType().IsSubclassOf(typeof(VariableState)))
+            else if (endSingleConditionState.GetType() == typeof(VariableDistanceState) && state.GetType().IsSubclassOf(typeof(VariableState)))
             {
-                VariableDistanceState var1 = endConditionState as VariableDistanceState;
+                VariableDistanceState var1 = endSingleConditionState as VariableDistanceState;
                 if ((state as VariableState) != null)
                 {
                     VariableState var2 = state as VariableState;
-                    return VariableState.IsSameVariable(var1.stateVar1, var2) ? Check(new VariableDistanceState(var1, var2), comparison, endConditionState, timeState) : false;
+                    return VariableState.IsSameVariable(var1.stateVar1, var2) ? Check(new VariableDistanceState(var1, var2), comparison, endSingleConditionState, timeState) : false;
                 }
                 return false;
             }
-            else if (endConditionState.GetType() == typeof(DistanceState))
+            else if (endSingleConditionState.GetType() == typeof(DistanceState))
             {
-                DistanceState var1 = endConditionState as DistanceState;
+                DistanceState var1 = endSingleConditionState as DistanceState;
                 MoveState var2 = state as MoveState;
                 if ((state as MoveState) != null)
                 {
-                    return var1.hasMoveStateFromSameTerminus(var2) ? Check(var1.GetUpdated(var2), comparison, endConditionState, timeState) : false;
+                    return var1.hasMoveStateFromSameTerminus(var2) ? Check(var1.GetUpdated(var2), comparison, endSingleConditionState, timeState) : false;
                 }
                 else
                     return false;
             }
             else
-                return Check(state, comparison, endConditionState, timeState);
+                return Check(state, comparison, endSingleConditionState, timeState);
         }
 
         public bool ShouldCheckPassively()
@@ -211,12 +211,12 @@ namespace TascUnity
 
         public bool ShouldCheckTimeState()
         {
-            return endConditionState.GetType() == typeof(TimeState);
+            return endSingleConditionState.GetType() == typeof(TimeState);
         }
 
         public bool ShouldCheckTascState()
         {
-            return endConditionState.GetType() == typeof(TascState);
+            return endSingleConditionState.GetType() == typeof(TascState);
         }
 
         public override bool IsSatisfied()

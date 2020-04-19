@@ -7,7 +7,7 @@ using System.IO;
 
 namespace TascUnity
 {
-    public class VoiceInterface : Interface
+    public class VoiceInterface : AuditoryInterface
     {
 #if UNITY_STANDALONE_WIN
         [DllImport("WindowsTTS")]
@@ -58,11 +58,11 @@ namespace TascUnity
 #endif
         }
 
-        public override void Send(string msg)
+        protected override void Play(string content)
         {
             if (!isActive)
                 return;
-            VoiceInterface.Speak(msg, false);
+            VoiceInterface.Speak(content, false);
         }
 
         public override void Activate()
@@ -87,7 +87,14 @@ namespace TascUnity
             }
         }
 
-        public static void Speak(string msg, bool interruptable = false)
+
+        public override void Conclude()
+        {
+            base.Conclude();
+            Deactivate();
+        }
+
+        private static void Speak(string msg, bool interruptable = false)
         {
 #if UNITY_STANDALONE_OSX
             System.Diagnostics.Process.Start("say", (msg));

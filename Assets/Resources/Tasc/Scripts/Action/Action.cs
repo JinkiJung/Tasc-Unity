@@ -39,8 +39,13 @@ namespace TascUnity
         }
 
         public Type state;
-        public Condition termination;
 
-        public Action(Type _state, Condition _termination) { state = _state; termination = _termination; }
+        public Terminus actor;
+
+        public Terminus target;
+
+        public Action(Terminus _actor, Type _state, Terminus _target) { state = _state; target = _target; }
+
+        public Action(Terminus _actor, Type _state) { actor = _actor; state = _state; }
     }
 }

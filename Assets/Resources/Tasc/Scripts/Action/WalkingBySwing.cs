@@ -14,22 +14,26 @@ namespace TascUnity
         public float maxSpeed = 6.0f;
         Vector3 moveDirection;
 
-        private OculusActor actor;
-        public WalkingBySwing(OculusActor _actor) : base(Type.WalkingBySwing, new Condition(new BoolVariableState(_actor, "isWalkable", false), RelationalOperator.Equal))
+        public WalkingBySwing(Terminus _actor, Type _state): base(_actor, _state)
         {
-            actor = _actor;
+            this.moveDirection = Vector3.zero;
         }
 
         public void Walk(Transform transform)
         {
-            float walkingSpeed = 0;
-
-            Hand[] hands = actor.GetHands();
-            for(int i=0; i<hands.Length; i++)
+            if (actor is OculusActor)
             {
-                walkingSpeed += hands[i].GetComponent<InputOTouch>().GetSwingMagnitude();
+                float walkingSpeed = 0;
+
+                Hand[] hands = (actor as OculusActor).GetHands();
+                for (int i = 0; i < hands.Length; i++)
+                {
+                    walkingSpeed += hands[i].GetComponent<InputOTouch>().GetSwingMagnitude();
+                }
+                MakeMove(transform, walkingSpeed);
             }
-            MakeMove(transform, walkingSpeed);
+            else
+                Debug.Log("Actor is not OculusActor!");
         }
 
         private void MakeMove(Transform transform, float walkingSpeed)

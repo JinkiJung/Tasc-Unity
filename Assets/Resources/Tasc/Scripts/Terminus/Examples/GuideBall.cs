@@ -28,13 +28,13 @@ namespace TascUnity
                 isHovering = true;
         }
 
-        void SetInformation(string msg)
+        void SetInformation(Information information)
         {
             if(interfaces != null)
             {
                 for (int i = 0; i < interfaces.Count; i++)
                 {
-                    interfaces[i].Send(msg);
+                    interfaces[i].Send(information);
                 }
             }
         }
@@ -43,7 +43,7 @@ namespace TascUnity
         {
             if (isHovering)
             {
-                SetInformation("OK");
+                SetInformation(new Information(Information.Modality.Text, "OK"));
             }
             else
             {
@@ -55,20 +55,20 @@ namespace TascUnity
                         if(distance <= hoveringRange)
                         {
                             isHovering = true;
-                            SetInformation("OK");
+                            SetInformation(new Information(Information.Modality.Text, "OK"));
                         }
                         else
                         {
                             isHovering = false;
-                            SetInformation(type + "\n" + distance.ToString());
+                            SetInformation(new Information(Information.Modality.Text, type + "\n" + distance.ToString()));
                         }                        
                     }
                     else
-                        SetInformation(type + "\n"+distance.ToString());
+                        SetInformation(new Information(Information.Modality.Text, type + "\n" + distance.ToString()));
                 }
                 else
                 {
-                    SetInformation("Target should be set.");
+                    SetInformation(new Information(Information.Modality.Text, "Target should be set."));
                 }
             }
         }

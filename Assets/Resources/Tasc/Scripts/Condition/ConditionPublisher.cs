@@ -6,14 +6,14 @@ using Valve.VR.InteractionSystem;
 
 namespace TascUnity
 {
-    public class ConditionPublisher
+    public sealed class SingleConditionPublisher // singleton
     {
         // Instance
-        private static readonly ConditionPublisher instance = new ConditionPublisher();
+        private static readonly SingleConditionPublisher instance = new SingleConditionPublisher();
         public delegate void OnCheckDelegate(State state);
         public event OnCheckDelegate OnCheck;
 
-        public static ConditionPublisher Instance
+        public static SingleConditionPublisher Instance
         {
             get
             {
@@ -21,7 +21,7 @@ namespace TascUnity
             }
         }
 
-        private ConditionPublisher()
+        private SingleConditionPublisher()
         {
 
         }

@@ -7,6 +7,11 @@ namespace TascUnity
 {
     public class VisualInterface : Interface
     {
+        public void Start()
+        {
+            modality = Information.Modality.Text;
+        }
+
         Renderer currentRenderer;
         
         void Awake()
@@ -26,12 +31,12 @@ namespace TascUnity
             SetVisibility(isActive);
         }
 
-        public override void Send(string msg)
+        public override void Send(Information information)
         {
             if (!isActive)
                 return;
-            Set3DText(msg);
-            Set2DText(msg);
+            Set3DText(information.GetText());
+            Set2DText(information.GetText());
         }
 
         public virtual void Set3DText(string givenText)
@@ -50,7 +55,7 @@ namespace TascUnity
             }
         }
 
-        public void SetVisibility(bool value)
+        public virtual void SetVisibility(bool value)
         {
             if (currentRenderer != null)
                 currentRenderer.enabled = value;
@@ -59,6 +64,11 @@ namespace TascUnity
         public void SetPose(Vector3 position, Quaternion rotation)
         {
             transform.SetPositionAndRotation(position, rotation);
+        }
+
+        public override bool IsDone()
+        {
+            return true;
         }
     }
 }

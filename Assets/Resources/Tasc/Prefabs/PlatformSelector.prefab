@@ -2628,6 +2628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   purpose: 
   isActive: 0
+  modality: 0
 --- !u!114 &114250782592537432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2979,6 +2980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   purpose: 
   isActive: 0
+  modality: 0
 --- !u!114 &114676609482267138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3103,6 +3105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   purpose: 
   isActive: 0
+  modality: 0
 --- !u!114 &114761069731386554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3166,6 +3169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   purpose: 
   isActive: 0
+  modality: 0
 --- !u!114 &114782717320959834
 MonoBehaviour:
   m_ObjectHideFlags: 1

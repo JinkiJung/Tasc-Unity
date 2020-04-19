@@ -8,7 +8,7 @@ namespace TascUnity
 {
     public class TimeState : State
     {
-        // we could not implement TimeState for task and state as subclass because of equality comparison at Condition
+        // we could not implement TimeState for task and state as subclass because of equality comparison at SingleCondition
         
         public Parameter<TimeSpan> value;
         private Stopwatch stopwatch;

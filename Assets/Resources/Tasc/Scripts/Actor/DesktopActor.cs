@@ -17,29 +17,29 @@ namespace TascUnity
         {
             if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.Z))
             {
-                //Condition.Instance.Evaluate(new InputUpState(this, (int)UnityEngine.KeyCode.A));
-                ConditionPublisher.Instance.Send(new InputDownState(this, (int)UnityEngine.KeyCode.Z));
+                //SingleCondition.Instance.Evaluate(new InputUpState(this, (int)UnityEngine.KeyCode.A));
+                SingleConditionPublisher.Instance.Send(new InputDownState(this, (int)UnityEngine.KeyCode.Z));
             }
             if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.X))
             {
-                ConditionPublisher.Instance.Send(new InputDownState(this, (int)UnityEngine.KeyCode.X));
+                SingleConditionPublisher.Instance.Send(new InputDownState(this, (int)UnityEngine.KeyCode.X));
             }
             if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.C))
             {
-                ConditionPublisher.Instance.Send(new InputDownState(this, (int)UnityEngine.KeyCode.C));
+                SingleConditionPublisher.Instance.Send(new InputDownState(this, (int)UnityEngine.KeyCode.C));
             }
             if (UnityEngine.Input.GetKeyUp(UnityEngine.KeyCode.Z))
             {
-                //Condition.Instance.Evaluate(new InputUpState(this, (int)UnityEngine.KeyCode.A));
-                ConditionPublisher.Instance.Send(new InputUpState(this, (int)UnityEngine.KeyCode.Z));
+                //SingleCondition.Instance.Evaluate(new InputUpState(this, (int)UnityEngine.KeyCode.A));
+                SingleConditionPublisher.Instance.Send(new InputUpState(this, (int)UnityEngine.KeyCode.Z));
             }
             if (UnityEngine.Input.GetKeyUp(UnityEngine.KeyCode.X))
             {
-                ConditionPublisher.Instance.Send(new InputUpState(this, (int)UnityEngine.KeyCode.X));
+                SingleConditionPublisher.Instance.Send(new InputUpState(this, (int)UnityEngine.KeyCode.X));
             }
             if (UnityEngine.Input.GetKeyUp(UnityEngine.KeyCode.C))
             {
-                ConditionPublisher.Instance.Send(new InputUpState(this, (int)UnityEngine.KeyCode.C));
+                SingleConditionPublisher.Instance.Send(new InputUpState(this, (int)UnityEngine.KeyCode.C));
             }
         }
     }
