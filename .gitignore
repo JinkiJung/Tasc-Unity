@@ -56,5 +56,11 @@ sysinfo.txt
 
 # Builds
 *.apk
+
+# Dependencies
 .DS_Store
 Assets/SteamVR_Resources.meta
+Assets/TobiiXR.meta
+Assets/TobiiXR/*
+Assets/ViveSR.meta
+Assets/ViveSR/*
