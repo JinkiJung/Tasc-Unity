@@ -6,7 +6,7 @@ using TascUnity;
 
 public class ScenarioController : MonoBehaviour
 {
-    ProceduralScenario scenario = new ProceduralScenario("Test1", "Test scenario for a unit test");
+    Scenario scenario = new Scenario("Test1", "Test scenario for a unit test");
     public List<Interface> interfaceList;
     private Dictionary<string, Interface> interfaceDict;
     public Actor actor;

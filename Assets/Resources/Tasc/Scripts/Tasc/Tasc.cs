@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace TascUnity
 {
+    [System.Serializable]
     public class Tasc: PrimitiveTask
     {
         public string name;
@@ -149,5 +150,6 @@ namespace TascUnity
             }
             return resultFromExit;
         }
+
     }
 }

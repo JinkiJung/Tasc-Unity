@@ -4,15 +4,17 @@ using UnityEngine;
 
 namespace TascUnity
 {
-    public class ProceduralScenario
+    [System.Serializable]
+    public class Scenario
     {
         public string name;
         public string description;
+        Tasc test;
         List<Tasc> scenario;
 
         public bool isActivated;
 
-        public ProceduralScenario(string _name, string _description)
+        public Scenario(string _name, string _description)
         {
             name = _name;
             description = _description;
@@ -52,6 +54,14 @@ namespace TascUnity
                 if (scenario[i].HasFinished())
                     scenario.RemoveAt(i);
             }
+        }
+
+        public override string ToString()
+        {
+            var str = "";
+            //for (int i = 0; i < scenario.Count; i++)
+                //str += scenario[i] + "\n";
+            return "name: " + name + "\ndescription: " + description + "\n" + test;
         }
     }
 }
