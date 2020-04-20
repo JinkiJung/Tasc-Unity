@@ -174,4 +174,9 @@ public class ScenarioController : MonoBehaviour
         if (scenario != null)
             scenario.Proceed();
     }
+
+    private void OnDestroy()
+    {
+        ConditionPublisher.Instance.StoreLog("test");
+    }
 }

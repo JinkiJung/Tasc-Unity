@@ -47,7 +47,7 @@ namespace TascUnity
 
         private void StateChangeHandler(State newState){
             Debug.Log(TimeState.GetGlobalTimer() + "\tTasc: "+name+"\tTascProgressState: " + newState.ToString());
-            SingleConditionPublisher.Instance.Send(new TascState(this, newState as TascProgressState));
+            ConditionPublisher.Instance.Send(new TascState(this, newState as TascProgressState));
         }
 
         public override string ToString()

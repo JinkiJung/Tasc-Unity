@@ -23,10 +23,10 @@ namespace TascUnity
             if (eyeTrackingData.GazeRay.IsValid)
             {
                 var rayOrigin = eyeTrackingData.GazeRay.Origin;
-                SingleConditionPublisher.Instance.Send(new VectorVariableState(this, "GazeOrigin", rayOrigin));
+                ConditionPublisher.Instance.Send(new VectorVariableState(this, "GazeOrigin", rayOrigin));
                 var rayDirection = eyeTrackingData.GazeRay.Direction;
                 Quaternion rayDirectionQuat = Quaternion.Euler(rayDirection);
-                SingleConditionPublisher.Instance.Send(new QuaternionVariableState(this, "GazeDirection", rayDirectionQuat));
+                ConditionPublisher.Instance.Send(new QuaternionVariableState(this, "GazeDirection", rayDirectionQuat));
             }
         }
     }

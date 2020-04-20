@@ -75,7 +75,7 @@ namespace TascUnity
 
         public override void Send()
         {
-            SingleConditionPublisher.Instance.Send(new VectorVariableState(this, variableName, value));
+            ConditionPublisher.Instance.Send(new VectorVariableState(this, variableName, value));
         }
 
         public override string ToString()

@@ -109,7 +109,7 @@ namespace TascUnity
 
         public override void Send()
         {
-            SingleConditionPublisher.Instance.Send(new IntVariableState(this, variableName, gear));
+            ConditionPublisher.Instance.Send(new IntVariableState(this, variableName, gear));
         }
 
         private void Start()
