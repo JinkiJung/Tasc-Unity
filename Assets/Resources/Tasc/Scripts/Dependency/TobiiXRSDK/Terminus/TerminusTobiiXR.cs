@@ -11,8 +11,7 @@ namespace TascUnity
 
         void Start()
         {
-            var settings = new TobiiXR_Settings();
-            TobiiXR.Start(settings);
+            
         }
 
         // Update is called once per frame
@@ -25,8 +24,9 @@ namespace TascUnity
                 var rayOrigin = eyeTrackingData.GazeRay.Origin;
                 ConditionPublisher.Instance.Send(new VectorVariableState(this, "GazeOrigin", rayOrigin));
                 var rayDirection = eyeTrackingData.GazeRay.Direction;
-                Quaternion rayDirectionQuat = Quaternion.Euler(rayDirection);
-                ConditionPublisher.Instance.Send(new QuaternionVariableState(this, "GazeDirection", rayDirectionQuat));
+                ConditionPublisher.Instance.Send(new VectorVariableState(this, "GazeDirection", rayDirection));
+                //Quaternion rayDirectionQuat = Quaternion.Euler(rayDirection);
+                //ConditionPublisher.Instance.Send(new QuaternionVariableState(this, "GazeDirection", rayDirectionQuat));
             }
         }
     }

@@ -8,7 +8,7 @@ namespace TascUnity
 {
     public sealed class ConditionPublisher // singleton
     {
-        public bool storeLog = true;
+        public bool storeLog = false;
         private StateLogger stateLogger;
         // Instance
         private static readonly ConditionPublisher instance = new ConditionPublisher();
@@ -28,6 +28,11 @@ namespace TascUnity
             stateLogger = new StateLogger();
         }
 
+        public void WillStoreLog(bool status)
+        {
+            storeLog = status;
+        }
+
         public void StoreLog(string fileNamePrefix)
         {
             stateLogger.Store(fileNamePrefix);
@@ -35,7 +40,7 @@ namespace TascUnity
 
         public void Send(State state)
         {
-            if(this.OnCheck != null)
+            if (this.OnCheck != null)
             {
                 this.OnCheck(state);
 
@@ -45,7 +50,7 @@ namespace TascUnity
 
         }
 
-        
+
     }
 
 }
