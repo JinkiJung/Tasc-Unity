@@ -21,6 +21,7 @@ public class ScenarioController : MonoBehaviour
     {
         initializeInterfaceDictionary();
         MakeTestScenario();
+        ConditionPublisher.Instance.WillStoreLog(true);
     }
 
     void initializeInterfaceDictionary()
