@@ -6,14 +6,16 @@ using Valve.VR.InteractionSystem;
 
 namespace TascUnity
 {
-    public sealed class SingleConditionPublisher // singleton
+    public sealed class ConditionPublisher // singleton
     {
+        public bool storeLog = true;
+        private StateLogger stateLogger;
         // Instance
-        private static readonly SingleConditionPublisher instance = new SingleConditionPublisher();
+        private static readonly ConditionPublisher instance = new ConditionPublisher();
         public delegate void OnCheckDelegate(State state);
         public event OnCheckDelegate OnCheck;
 
-        public static SingleConditionPublisher Instance
+        public static ConditionPublisher Instance
         {
             get
             {
@@ -21,9 +23,14 @@ namespace TascUnity
             }
         }
 
-        private SingleConditionPublisher()
+        private ConditionPublisher()
         {
+            stateLogger = new StateLogger();
+        }
 
+        public void StoreLog(string fileNamePrefix)
+        {
+            stateLogger.Store(fileNamePrefix);
         }
 
         public void Send(State state)
@@ -31,8 +38,14 @@ namespace TascUnity
             if(this.OnCheck != null)
             {
                 this.OnCheck(state);
+
+                if (storeLog)
+                    stateLogger.StoreALog(state);
             }
+
         }
+
+        
     }
 
 }

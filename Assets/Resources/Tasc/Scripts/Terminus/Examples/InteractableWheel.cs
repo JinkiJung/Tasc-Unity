@@ -56,9 +56,9 @@ namespace TascUnity
         public override void Send()
         {
             if (didCW)
-                SingleConditionPublisher.Instance.Send(new BoolVariableState(this, "didCW", didCW));
+                ConditionPublisher.Instance.Send(new BoolVariableState(this, "didCW", didCW));
             else if (didCCW)
-                SingleConditionPublisher.Instance.Send(new BoolVariableState(this, "didCCW", didCCW));
+                ConditionPublisher.Instance.Send(new BoolVariableState(this, "didCCW", didCCW));
 
         }
 

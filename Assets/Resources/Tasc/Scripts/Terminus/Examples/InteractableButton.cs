@@ -44,7 +44,7 @@ namespace TascUnity
 
         public override void Send()
         {
-            SingleConditionPublisher.Instance.Send(new BoolVariableState(this, variableName, isPushed));
+            ConditionPublisher.Instance.Send(new BoolVariableState(this, variableName, isPushed));
         }
 
         private void Start()

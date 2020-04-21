@@ -37,12 +37,12 @@ namespace TascUnity
 
         public void SetActorUnwalkable()
         {
-            SingleConditionPublisher.Instance.Send(new BoolVariableState(this, "isWalkable", false));
+            ConditionPublisher.Instance.Send(new BoolVariableState(this, "isWalkable", false));
         }
 
         public void SetActorWalkable()
         {
-            SingleConditionPublisher.Instance.Send(new BoolVariableState(this, "isWalkable", true));
+            ConditionPublisher.Instance.Send(new BoolVariableState(this, "isWalkable", true));
         }
 
         private void HandleControllerInput()
@@ -54,19 +54,19 @@ namespace TascUnity
                 {
                     hands[i].GetComponent<InputOTouch>().isGrabing = true;
                     hands[i].GetComponent<InputOTouch>().grabType = starting;
-                    SingleConditionPublisher.Instance.Send(new OTouchDownState(this, (int)starting));
+                    ConditionPublisher.Instance.Send(new OTouchDownState(this, (int)starting));
                 }
 
                 GrabTypes ending = hands[i].GetGrabEnding();
                 if (ending != GrabTypes.None)
                 {
                     hands[i].GetComponent<InputOTouch>().isGrabing = false;
-                    SingleConditionPublisher.Instance.Send(new OTouchUpState(this, (int)ending));
+                    ConditionPublisher.Instance.Send(new OTouchUpState(this, (int)ending));
                 }
                 else
                 {
                     if(hands[i].GetComponent<InputOTouch>().isGrabing)
-                        SingleConditionPublisher.Instance.Send(new OTouchHoldState(this, (int)hands[i].GetComponent<InputOTouch>().grabType));
+                        ConditionPublisher.Instance.Send(new OTouchHoldState(this, (int)hands[i].GetComponent<InputOTouch>().grabType));
                 }
             }
         }

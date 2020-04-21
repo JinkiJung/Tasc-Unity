@@ -39,10 +39,10 @@ public class TestTerminus : Terminus {
 
     public override void Send()
     {
-        SingleConditionPublisher.Instance.Send(new BoolVariableState(this, "isPushed", isPushed));
-        SingleConditionPublisher.Instance.Send(new IntVariableState(this, "incrementValue_int", (int)incrementValue));
-        SingleConditionPublisher.Instance.Send(new FloatVariableState(this, "incrementValue", incrementValue));
-        SingleConditionPublisher.Instance.Send(new VectorVariableState(this, "incrementVector", incrementVector));
+        ConditionPublisher.Instance.Send(new BoolVariableState(this, "isPushed", isPushed));
+        ConditionPublisher.Instance.Send(new IntVariableState(this, "incrementValue_int", (int)incrementValue));
+        ConditionPublisher.Instance.Send(new FloatVariableState(this, "incrementValue", incrementValue));
+        ConditionPublisher.Instance.Send(new VectorVariableState(this, "incrementVector", incrementVector));
     }
 
     private void Start()

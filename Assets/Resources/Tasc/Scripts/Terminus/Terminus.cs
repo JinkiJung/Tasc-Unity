@@ -35,7 +35,7 @@ namespace TascUnity
             Vector3 currPos = gameObject.transform.position;
             if (previousPosition != currPos)
             {
-                SingleConditionPublisher.Instance.Send(new MoveState(this));
+                ConditionPublisher.Instance.Send(new MoveState(this));
                 previousPosition = currPos;
             }
         }

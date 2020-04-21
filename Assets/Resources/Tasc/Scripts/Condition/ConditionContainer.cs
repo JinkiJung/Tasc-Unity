@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TascUnity
 {
-    class SingleConditionContainer : Condition
+    class ConditionContainer : Condition
     {
         public SingleCondition condition1;
         public SingleCondition condition2;
@@ -13,7 +13,7 @@ namespace TascUnity
         public TimeState holdingTimer;
         protected bool isSatisfied;
 
-        public SingleConditionContainer(SingleCondition c1, LogicalOperator ope, SingleCondition c2, TimeState timeState = null)
+        public ConditionContainer(SingleCondition c1, LogicalOperator ope, SingleCondition c2, TimeState timeState = null)
         {
             condition1 = c1;
             relationship = ope;
@@ -57,12 +57,12 @@ namespace TascUnity
 
         public void StartMonitoring()
         {
-            SingleConditionPublisher.Instance.OnCheck += Send;
+            ConditionPublisher.Instance.OnCheck += Send;
         }
 
         public void StopMonitoring()
         {
-            SingleConditionPublisher.Instance.OnCheck -= Send;
+            ConditionPublisher.Instance.OnCheck -= Send;
         }
 
         public void Send(State state)
