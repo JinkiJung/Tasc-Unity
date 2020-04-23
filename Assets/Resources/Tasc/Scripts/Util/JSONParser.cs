@@ -9,6 +9,25 @@ namespace TascUnity
         {
             List<string> jsonObjList = new List<string>();
 
+            //Regex regx = new Regex("(?:\"\\s *\\w + \"\\s*:\\s*\")(.*?)(?:\")");
+
+            Regex regx = new Regex("(?:\"\\w * \":\")(.*?)(?:\")");
+
+            //Regex regx = new Regex(@"""[^""\\]*(?:\\.[^""\\]*)*""\s*:\s*\{");
+            //Regex regx = new Regex("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"\\s*:\\s*\\[");
+
+            MatchCollection matches = regx.Matches(jsonString);
+
+            int num = 0;
+            foreach (Match match in matches)
+            {
+                num++;
+                GroupCollection groups = match.Groups;
+                jsonObjList.Add(match.Value);
+            }
+            jsonObjList.Add(num.ToString());
+
+            /*
             string[] items = jsonString.Split('{');
             //Debug.Log(items);
             string stacked = "";
@@ -32,7 +51,7 @@ namespace TascUnity
                     stacked += items[t];
                 }
             }
-
+            */
             return jsonObjList.ToArray();
         }
 
