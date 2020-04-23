@@ -12,7 +12,7 @@ namespace TascUnity
         public virtual void Send(Information information) { }
         public virtual void Activate() { isActive = true; }
         public virtual void Deactivate() { isActive = false; }
-        public virtual bool IsDone() { return false; }
+        public virtual bool IsSent() { return false; }
         public virtual void Conclude() { }
 
         public void SetModality(Information.Modality _modality) { modality = _modality; }

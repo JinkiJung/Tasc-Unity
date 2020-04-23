@@ -7,9 +7,10 @@ namespace TascUnity
 {
     public class VisualInterface : Interface
     {
+        protected bool isSent = false;
         public void Start()
         {
-            modality = Information.Modality.Text;
+            isSent = false;
         }
 
         Renderer currentRenderer;
@@ -35,24 +36,7 @@ namespace TascUnity
         {
             if (!isActive)
                 return;
-            Set3DText(information.GetText());
-            Set2DText(information.GetText());
-        }
-
-        public virtual void Set3DText(string givenText)
-        {
-            if (this.GetComponent<TextMesh>() != null)
-            {
-                this.GetComponent<TextMesh>().text = givenText;
-            }
-        }
-
-        public virtual void Set2DText(string givenText)
-        {
-            if (this.GetComponent<Text>() != null)
-            {
-                this.GetComponent<Text>().text = givenText;
-            }
+            isSent = true;
         }
 
         public virtual void SetVisibility(bool value)
@@ -66,9 +50,9 @@ namespace TascUnity
             transform.SetPositionAndRotation(position, rotation);
         }
 
-        public override bool IsDone()
+        public override bool IsSent()
         {
-            return true;
+            return isSent;
         }
     }
 }

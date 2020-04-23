@@ -8,7 +8,7 @@ namespace TascUnity
 {
     public class Information
     {
-        public enum Modality { Text = 0, Audio = 1, Haptic = 2, AvatarPose = 3 };
+        public enum Modality { Text = 0, Audio = 1, Haptic = 2, AvatarPose = 3, Video = 4 };
         public Dictionary<Modality, string> contextContent; // string for context
 
         public Information(Modality context, string content)
@@ -67,6 +67,11 @@ namespace TascUnity
         {
             string result;
             return contextContent.TryGetValue(context, out result) ? result : "";
+        }
+
+        public override string ToString()
+        {
+            return contextContent.ToString();
         }
     }
 }

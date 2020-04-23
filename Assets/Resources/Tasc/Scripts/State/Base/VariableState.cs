@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TascUnity
 {
-    public class VariableState : IntraState
+    public class VariableState : TerminusState
     {
         public Parameter<string> variableName;
 		public VariableState(Terminus _sub, string _variableName)

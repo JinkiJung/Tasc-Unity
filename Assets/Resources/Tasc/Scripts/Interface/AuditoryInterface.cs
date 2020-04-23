@@ -22,24 +22,6 @@ namespace TascUnity
             {
                 Play(information.GetContent(Information.Modality.Audio));
 
-                /*
-                foreach (KeyValuePair<Interface, Information> entry in informationContainer)
-                {
-                    // do something with entry.Value or entry.Key
-                    entry.Key.Send(entry.Value);
-                }
-                /*
-                for (int i=0; i< interfaces.Count; i++)
-                {
-                    if (interfaces[i] != null)
-                    {
-                        Debug.Log(interfaces[i].purpose);
-                        Debug.Log(library.GetInfo(interfaces[i].purpose).content);
-                        interfaces[i].Send(library.GetInfo(interfaces[i].purpose).content);
-                    }
-                }
-                */
-
                 isNarrationStarted = true;
                 narrationInterval = GlobalConstraint.NARRATION_INTERVAL;
             }
@@ -51,7 +33,14 @@ namespace TascUnity
             }
         }
 
-        public override bool IsDone()
+        public override void Conclude()
+        {
+            base.Conclude();
+            isNarrationStarted = false;
+            isNarrationEnded = false;
+        }
+
+        public override bool IsSent()
         {
             return isNarrationEnded;
         }

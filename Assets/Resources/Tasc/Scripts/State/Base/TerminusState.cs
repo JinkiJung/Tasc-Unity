@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TascUnity
 {
-    public abstract class IntraState : State
+    public abstract class TerminusState : State
     {
         public Terminus subject;
 

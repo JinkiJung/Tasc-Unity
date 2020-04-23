@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TascUnity
 {
-    public abstract class InputState: IntraState
+    public abstract class InputState: TerminusState
     {
         public Parameter<int> value;
 

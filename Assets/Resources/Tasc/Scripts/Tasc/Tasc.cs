@@ -129,8 +129,8 @@ namespace TascUnity
             {
                 for (int i = 0; i < follow.Count; i++)
                 {
-                    follow[i].Proceed();
-                    //if (!follow[i].IsDone())
+                    if (!follow[i].ToldYou())
+                        follow[i].Instruct();
                     cantSkipInterval--;
                 }
                 resultFromExit = before.CheckPassive();

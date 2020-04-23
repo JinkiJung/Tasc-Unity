@@ -34,6 +34,9 @@ namespace TascUnity
         public static extern bool isSpeaking();
 #endif
         
+        public enum ContinousTalkPolicy { WaitAndSpeech, CutAndSpeech }
+
+        public ContinousTalkPolicy policy = ContinousTalkPolicy.WaitAndSpeech;
         public static VoiceInterface theVoice = null;
 
         public int voiceIdx = 0;
@@ -91,7 +94,11 @@ namespace TascUnity
         public override void Conclude()
         {
             base.Conclude();
-            Deactivate();
+            if (policy == ContinousTalkPolicy.CutAndSpeech)
+            {
+                destroySpeech();
+                initSpeech();
+            }
         }
 
         private static void Speak(string msg, bool interruptable = false)

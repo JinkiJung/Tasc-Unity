@@ -7,9 +7,11 @@ namespace TascUnity
 {
     public class Instruction
     {
-        //public InformationContainer library;
+        public enum Policy { Once, Twice, Repeatitive };
         public string name;
-        //protected List<Interface> interfaces;
+        public Policy policy = Policy.Once;
+        public int repeatTerm = 0;
+        protected bool isDone = false;
         protected Dictionary<Interface, Information> informationContainer;
 
         public Instruction(string _name, Interface _interface, Information _information)
@@ -17,6 +19,7 @@ namespace TascUnity
             name = _name;
             informationContainer = new Dictionary<Interface, Information>();
             Add(_interface, _information);
+            isDone = false;
         }
 
         public void Add(Interface _interface, Information _information) {
@@ -26,26 +29,45 @@ namespace TascUnity
             }
         }
 
-        public bool IsDone()
+        public bool ToldYou()
+        {
+            return isDone;
+        }
+
+        public virtual void Reset()
+        {
+            isDone = false;
+        }
+
+        public bool AllSent()
         {
             bool result = false;
             foreach (KeyValuePair<Interface, Information> entry in informationContainer)
             {
-                result = entry.Key.IsDone() ? true : result;
+                result = entry.Key.IsSent() ? true : result;
             }
             return result;
         }
 
         public virtual void Conclude()
         {
+            foreach (KeyValuePair<Interface, Information> entry in informationContainer)
+            {
+                entry.Key.Conclude();
+            }
 
+            Reset();
         }
 
-        public virtual void Proceed()
+        public virtual void Instruct()
         {
             foreach (KeyValuePair<Interface, Information> entry in informationContainer)
             {
                 entry.Key.Send(entry.Value);
+            }
+            if(policy == Policy.Once)
+            {
+                isDone = true;
             }
         }
 
