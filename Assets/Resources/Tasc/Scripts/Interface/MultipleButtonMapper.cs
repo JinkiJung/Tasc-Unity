@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TascUnity
 {
-    public class MultipleButtonMapper : VisualInterface
+    public class MultipleButtonMapper : TextInterface
     {
         public List<InteractableButton> interactableButtons;
         private int recentlyPushedIdx = -1;

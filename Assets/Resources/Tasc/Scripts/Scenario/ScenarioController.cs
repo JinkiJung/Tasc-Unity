@@ -10,6 +10,7 @@ public class ScenarioController : MonoBehaviour
     public List<Interface> interfaceList;
     private Dictionary<string, Interface> interfaceDict;
     public Actor actor;
+    public bool recordLog = false;
 
     // Use this for initialization
     void Start()
@@ -21,7 +22,7 @@ public class ScenarioController : MonoBehaviour
     {
         initializeInterfaceDictionary();
         MakeTestScenario();
-        ConditionPublisher.Instance.WillStoreLog(true);
+        ConditionPublisher.Instance.WillStoreLog(recordLog);
     }
 
     void initializeInterfaceDictionary()
