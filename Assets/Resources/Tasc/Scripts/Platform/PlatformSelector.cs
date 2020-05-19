@@ -20,7 +20,7 @@ namespace TascUnity
         {
             PlatformSelector.chosenPlatform = currentPlatform;
 
-            if(FindObjectsOfType<ScenarioController>() != null)
+            if (FindObjectsOfType<ScenarioController>() != null && FindObjectsOfType<ScenarioController>()[0] != null)
             {
                 scenarioController = FindObjectsOfType<ScenarioController>()[0];
 
@@ -39,7 +39,7 @@ namespace TascUnity
                     transform.Find("Player").gameObject.SetActive(true);
                     transform.Find("RigidBodyFPSController").gameObject.SetActive(false);
                     scenarioController.actor = transform.Find("Player").gameObject.GetComponent<OculusActor>();
-                }
+                }       
             }            
         }
     }

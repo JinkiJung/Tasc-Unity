@@ -78,7 +78,6 @@ public class ScenarioController : MonoBehaviour
         test4instruction.Add(interfaceDict["Narration"], new Information(Information.Modality.Audio, "Press Z button."));
         test4.AddInstruction(test4instruction);
         test4.before = new SingleCondition(new AutoVariableState(testTerminus, "isPushed", true), RelationalOperator.Equal);
-        //test4.before = new SingleCondition(new BoolVariableState(testTerminus, "isPushed", true), RelationalOperator.Equal);
         scenario.Add(test4);
 
         Tasc test5 = new Tasc("Test5 - IntVariableState", "");
@@ -87,7 +86,6 @@ public class ScenarioController : MonoBehaviour
         test5instruction.Add(interfaceDict["Narration"], new Information(Information.Modality.Audio, "Press Z button."));
         test5.AddInstruction(test5instruction);
         test5.before = new SingleCondition(new AutoVariableState(testTerminus, "incrementValue_int", 2), RelationalOperator.LargerOrEqual);
-        //test4.before = new SingleCondition(new BoolVariableState(testTerminus, "isPushed", true), RelationalOperator.Equal);
         scenario.Add(test5);
 
         Tasc test6 = new Tasc("Test6 - FloatVariableState", "");
@@ -96,7 +94,6 @@ public class ScenarioController : MonoBehaviour
         test6instruction.Add(interfaceDict["Narration"], new Information(Information.Modality.Audio, "Press Z button."));
         test6.AddInstruction(test6instruction);
         test6.before = new SingleCondition(new AutoVariableState(testTerminus, "incrementValue", 1.5f), RelationalOperator.LargerOrEqual);
-        //test4.before = new SingleCondition(new BoolVariableState(testTerminus, "isPushed", true), RelationalOperator.Equal);
         scenario.Add(test6);
 
         Tasc test7 = new Tasc("Test7 - VectorVariableState", "");
@@ -105,7 +102,6 @@ public class ScenarioController : MonoBehaviour
         test7instruction.Add(interfaceDict["Narration"], new Information(Information.Modality.Audio, "Press Z button."));
         test7.AddInstruction(test7instruction);
         test7.before = new SingleCondition(new VectorVariableState(testTerminus, "incrementVector", Vector3.zero), RelationalOperator.Equal);
-        //test4.before = new SingleCondition(new BoolVariableState(testTerminus, "isPushed", true), RelationalOperator.Equal);
         scenario.Add(test7);
 
         Tasc test8 = new Tasc("Test8 - InputDownState", "");

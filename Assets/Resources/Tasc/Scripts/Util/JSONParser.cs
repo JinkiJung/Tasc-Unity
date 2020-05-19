@@ -1,21 +1,104 @@
 ﻿using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using UnityEngine;
+using System;
 
 namespace TascUnity
 {
     public class JSONParser
     {
-        public static string[] Parse(string jsonString)
+
+
+        private static List<string> UnwrapJsonString(string targetString)
         {
+            List<string> jsonObjList = new List<string>();
+            while (true)
+            {
+                Regex regx = new Regex(@"\{[^\{]+?\}");
+
+                //Regex regx = new Regex(@"""[^""\\]*(?:\\.[^""\\]*)*""\s*:\s*\{");
+                //Regex regx = new Regex("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"\\s*:\\s*\\[");
+
+                Match match = regx.Match(targetString);
+                if (!match.Success)
+                    break;
+                jsonObjList.Add(match.Value);
+                targetString = regx.Replace(targetString, ("\"?Obj" + (jsonObjList.Count - 1).ToString() + "?\""), 1);
+            }
+            return jsonObjList;
+        }
+
+        private static string ProcessJsonElement(string typeName, string targetString)
+        {
+            //var type = Type.GetType(typeName);
+            //var myObject = (MyAbstractClass)Activator.CreateInstance(type);
+
+            
+            Regex regxForVariable = new Regex(@"(?:""(\w|-|\$)*"":[^\[])([^\},\{]*)");
+            MatchCollection matchVariables = regxForVariable.Matches(targetString);
+
+            for(int i=0; i< matchVariables.Count; i++)
+            {
+                ProcessLine(matchVariables[i].Value);
+            }
+
+            return "";
+        }
+
+        private static string ProcessLine(string lineString)
+        {
+            /*
+            Regex regxForList = new Regex(@"(?:""(\w|-)*"")");
+            MatchCollection matchVariables = regxForList.Matches(lineString);
+
+            if (matchVariables.Count == 2)
+                Debug.Log(matchVariables[0].Value + ": " + matchVariables[1].Value);
+            else
+                Debug.Log(matchVariables[0].Value + ": ");
+                */
+
+            string[] lines = lineString.Split(
+                new[] { "\r\n", "\r", "\n" },
+                StringSplitOptions.None
+            );
+            for(int i=0; i<lines.Length; i++)
+            {
+                string[] splited = lines[i].Split(':');
+                if (splited.Length == 2)
+                    Debug.Log(splited[0] + ": " + splited[1].Trim());
+            }
+            
+
+            return "";
+        }
+
+        private static void ProcessSchema(string text)
+        {
+
+            // Display the file contents to the console. Variable text is a string.
+            List<string> elements = UnwrapJsonString(text);
+            for(int i=0; i< elements.Count; i++)
+            {
+                Debug.Log(elements[i]);
+                ProcessJsonElement("tt",elements[i]);
+            }
+        }
+
+        public static string[] Parse(string jsonSchemaString, string jsonString)
+        {
+            ProcessSchema(jsonSchemaString);
             List<string> jsonObjList = new List<string>();
 
             //Regex regx = new Regex("(?:\"\\s *\\w + \"\\s*:\\s*\")(.*?)(?:\")");
 
-            Regex regx = new Regex("(?:\"\\w * \":\")(.*?)(?:\")");
+            //jsonObjList = UnwrapJsonObject(jsonString);
 
-            //Regex regx = new Regex(@"""[^""\\]*(?:\\.[^""\\]*)*""\s*:\s*\{");
-            //Regex regx = new Regex("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"\\s*:\\s*\\[");
-
+            for(int i= jsonObjList.Count-1; i>=0; i--)
+            {
+                
+            }
+            
+            /*
             MatchCollection matches = regx.Matches(jsonString);
 
             int num = 0;
@@ -26,6 +109,7 @@ namespace TascUnity
                 jsonObjList.Add(match.Value);
             }
             jsonObjList.Add(num.ToString());
+            */
 
             /*
             string[] items = jsonString.Split('{');
