@@ -43,12 +43,10 @@ namespace TascUnity
         
         void OnEnable()
         {
-#if UNITY_STANDALONE_WIN
             if (theVoice == null)
             {
                 Activate();
             }
-#endif
         }
 
         void OnDestroy()
@@ -75,7 +73,9 @@ namespace TascUnity
             {
                 theVoice = this;
                 Debug.Log("Tasc:Narrator - Initializing speech");
+#if UNITY_STANDALONE_WIN
                 initSpeech();
+#endif
             }
         }
 
@@ -85,7 +85,9 @@ namespace TascUnity
             if (theVoice != null)
             {
                 Debug.Log("Tasc:Narrator - Destroying speech");
+#if UNITY_STANDALONE_WIN
                 destroySpeech();
+#endif
                 theVoice = null;
             }
         }
@@ -96,8 +98,10 @@ namespace TascUnity
             base.Conclude();
             if (policy == ContinousTalkPolicy.CutAndSpeech)
             {
+#if UNITY_STANDALONE_WIN
                 destroySpeech();
                 initSpeech();
+#endif
             }
         }
 
